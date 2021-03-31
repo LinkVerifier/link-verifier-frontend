@@ -30,3 +30,7 @@ yarn-error.log*
 
 # Local History for Visual Studio Code
 .history/
+
+#SCSS
+.min.css
+.css
