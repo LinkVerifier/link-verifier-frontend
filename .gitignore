@@ -32,5 +32,7 @@ yarn-error.log*
 .history/
 
 #SCSS
-.min.css
-.css
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map

@@ -1,10 +1,8 @@
-import React, { useState, useRef, useContext } from 'react';
+import React from 'react';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import AuthService from "../../../Authentication/auth-service";
-import './Login.scss';
-import { AccountBoxContext } from '../../../context/AccountBoxContext';
+import "./Input.scss";
 
 const required = (value) => {
     if (!value) {
@@ -16,54 +14,56 @@ const required = (value) => {
     }
 };
 
-function Login() {
+function Input(props) {
+
     const form = useRef();
     const checkBtn = useRef();
-    
-    const [email, setEmail] = useState("");
+  
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
 
-    const { switchToSignUp } = useContext(AccountBoxContext);
+    let history = useHistory();
 
-    const onChangeEmail = (e) => {
-        const email = e.target.value;
-        setEmail(email);
+    const onChangeUsername = (e) => {
+      const username = e.target.value;
+      setUsername(username);
     };
-    
+  
     const onChangePassword = (e) => {
-        const password = e.target.value;
-        setPassword(password);
+      const password = e.target.value;
+      setPassword(password);
     };
-    
+  
     const handleLogin =(e) => {
-        e.preventDefault();
-    
-        setMessage("");
-        setLoading(true);
-    
-        form.current.validateAll();
-    
-        if (checkBtn.current.context._errors.length === 0) {
-        AuthService.login(email, password).then(
-            () => {
-                console.log("zalogowano");
-            },
-            (error) => {
+      e.preventDefault();
+  
+      setMessage("");
+      setLoading(true);
+  
+      form.current.validateAll();
+  
+      if (checkBtn.current.context._errors.length === 0) {
+        AuthService.login(username, password).then(
+          () => {
+            history.push("/chat");
+            window.location.reload();
+          },
+          (error) => {
             const resMessage =
-                (error.response &&
+              (error.response &&
                 error.response.data &&
                 error.response.data.message) ||
-                error.message ||
-                error.toString();
-    
+              error.message ||
+              error.toString();
+  
+            setLoading(false);
             setMessage(resMessage);
-            }
+          }
         );
-        } else {
+      } else {
         setLoading(false);
-        }
+      }
     };
 
     return (
@@ -72,11 +72,11 @@ function Login() {
                 <Input
                     type="text"
                     className="form-control"
-                    name="email"
-                    value={email}
-                    onChange={onChangeEmail}
+                    name="username"
+                    value={username}
+                    onChange={onChangeUsername}
                     validations={[required]}
-                    placeholder="Email"
+                    placeholder="Username"
                 />
                 <Input
                     type="password"
@@ -104,10 +104,8 @@ function Login() {
                 )}
                 <CheckButton style={{ display: "none" }} ref={checkBtn} />
             </Form>
-            Nie posiadasz jeszcze konta ?
-            <button onClick={switchToSignUp}>Zarejestruj się</button>
         </div>
     );
 }
 
-export default Login;
+export default Input;
