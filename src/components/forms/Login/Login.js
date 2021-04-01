@@ -104,8 +104,10 @@ function Login() {
                 )}
                 <CheckButton style={{ display: "none" }} ref={checkBtn} />
             </Form>
-            Nie posiadasz jeszcze konta ?
-            <button onClick={switchToSignUp}>Zarejestruj się</button>
+            <div className="switch-windows">
+                Nie posiadasz jeszcze konta ?
+                <button onClick={switchToSignUp}>Zarejestruj się !</button>
+            </div>
         </div>
     );
 }

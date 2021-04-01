@@ -4,6 +4,16 @@ import Register from '../../components/forms/Register/Register';
 import { motion } from "framer-motion"
 import './AccountBox.scss';
 import { AccountBoxContext } from '../../context/AccountBoxContext';
+import { ReactComponent as Logo } from '../../assets/images/logo.svg';
+import astronauta from '../../assets/images/astronauta.png';
+import robal from '../../assets/images/robal.png';
+import planeta from '../../assets/images/planeta.png';
+import gwiazdeczka from '../../assets/images/gwiazdeczka.png'; 
+import rakieta from '../../assets/images/rakieta.png';
+import krolik from '../../assets/images/krolik.png';
+import chomiczek from '../../assets/images/chomiczek.png';
+import kometa from '../../assets/images/kometa.png';
+
 
 const variants = {
     expanded: {
@@ -18,7 +28,7 @@ const variants = {
 
 const expandingTransition = {
     type: "spring",
-    duration: 2.5,
+    duration: .5,
     stiffness: 30,
 }
 
@@ -31,7 +41,7 @@ function AccountBox() {
         setExpended(true);
         setTimeout(() => {
             setExpended(false);
-        }, expandingTransition.duration * 1000 - 1500)
+        }, expandingTransition.duration * 1000 + 500)
     }
 
     const switchToSignIn = () => {
@@ -70,7 +80,7 @@ function AccountBox() {
                                 </div>}
                             {active === "singup" && 
                                 <div>
-                                    <h2>Witaj nowy użytkowniku</h2>
+                                    <h2>Witaj nowy użytkowniku !</h2>
                                     <h5>Zarejestruj się aby kontynuować ! </h5>
                                 </div>}
                         </div>
@@ -78,6 +88,21 @@ function AccountBox() {
                     <div className="form-wrapper">
                         {active === "singin" && <Login />}
                         {active === "singup" && <Register/>}
+                    </div>
+                    <div id="logo">
+                        <h3>
+                            <span><Logo className="logo"/></span>
+                            <span>link</span>
+                            <span>verifier</span>
+                        </h3>
+                    </div>
+                    <div className="circle">
+                    <img src={chomiczek}></img>
+                    </div>
+                    <div className="image-in-circle">
+                        <img className="img-astronauta" src={astronauta}></img>
+                        <img className="img-gwiazdeczka" src={gwiazdeczka}></img>
+                        <img className="img-planeta" src={planeta}></img>
                     </div>
                 </div>
             </div>

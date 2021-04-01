@@ -158,8 +158,10 @@ function Register(props) {
                 )}
                 <CheckButton style={{ display: "none" }} ref={checkBtn} />
             </Form>
-            Masz już konto ?
-            <button onClick={switchToSignIn}>Zaloguj się</button>
+            <div className="switch-windows">
+                Masz już konto ?
+                <button onClick={switchToSignIn}>Zaloguj się !</button>
+            </div>
         </div>
     );
 }
