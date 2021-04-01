@@ -1,10 +1,12 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import AuthService from "../../../Authentication/auth-service";
+import AuthService from "../../../util/Authentication/auth-service";
 import './Login.scss';
 import { AccountBoxContext } from '../../../context/AccountBoxContext';
+
+/*global FB*/
 
 const required = (value) => {
     if (!value) {
@@ -16,16 +18,23 @@ const required = (value) => {
     }
 };
 
-function Login() {
+function Login(props) {
     const form = useRef();
     const checkBtn = useRef();
     
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [facebookLoading, setFacebookLoading] = useState(false);
     const [message, setMessage] = useState("");
 
     const { switchToSignUp } = useContext(AccountBoxContext);
+
+    useEffect(() => {
+        console.log("ELO");
+        initFacebookLogin();
+        console.log("MELO");
+    }, []);
 
     const onChangeEmail = (e) => {
         const email = e.target.value;
@@ -35,6 +44,17 @@ function Login() {
     const onChangePassword = (e) => {
         const password = e.target.value;
         setPassword(password);
+    };
+
+    const initFacebookLogin = () => {
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '857334021514094',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: "v7.0",
+            });
+        };
     };
     
     const handleLogin =(e) => {
@@ -49,6 +69,7 @@ function Login() {
         AuthService.login(email, password).then(
             () => {
                 console.log("zalogowano");
+                props.history.push("/");
             },
             (error) => {
             const resMessage =
@@ -62,8 +83,41 @@ function Login() {
             }
         );
         } else {
-        setLoading(false);
+            setLoading(false);
         }
+    };
+
+    const getFacebookAccessToken = () => {
+        setFacebookLoading(true);
+        FB.login(
+          function (response) {
+            if (response.status === "connected") {
+              const facebookLoginRequest = {
+                accessToken: response.authResponse.accessToken,
+              };
+              AuthService.facebookLogin(facebookLoginRequest.accessToken).then(
+                () => {
+                    console.log("zalogowano");
+                    props.history.push("/");
+                },
+                (error) => {
+                    const resMessage =
+                        (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+        
+                    setMessage(resMessage);
+                }
+            );
+            } else {
+                setFacebookLoading(false);
+                console.log(response);
+            }
+          },
+          { scope: "email" }
+        );
     };
 
     return (
@@ -87,12 +141,18 @@ function Login() {
                     validations={[required]}
                     placeholder="Password"
                 />
-
                 <button className="btn-sign" disabled={loading}>
                     {loading && (
                         <span className="spinner-border spinner-border-sm"></span>
                     )}
                     <span>Sign In</span>
+                </button>
+
+                <button className="btn-sign" disabled={facebookLoading} onClick={getFacebookAccessToken}>
+                    {facebookLoading && (
+                        <span className="spinner-border spinner-border-sm"></span>
+                    )}
+                    <span>Facebook</span>
                 </button>
 
                 {message && (

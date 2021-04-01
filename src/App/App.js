@@ -3,19 +3,26 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  withRouter,
   Link,
 } from "react-router-dom";
 import './App.css';
 import AccountBox from '../pages/AccountBox/AccountBox';
+import Home from '../pages/Home/Home';
 
-function App() {
+function App(props) {
   return (
     <div className="AppContainer">
       <Router>
           <Switch>
-            <Route exact path="/login">
-            <AccountBox></AccountBox>
-            </Route>
+            <Route 
+              exact path="/" 
+              render={(props) => <Home {...props} />} 
+            />
+            <Route
+              exact path="/login"
+              render={(props) => <AccountBox {...props} />}
+            />
           </Switch>
       </Router>
     </div>

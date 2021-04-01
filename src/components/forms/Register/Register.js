@@ -4,7 +4,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
-import AuthService from "../../../Authentication/auth-service";
+import AuthService from "../../../util/Authentication/auth-service";
 import { AccountBoxContext } from '../../../context/AccountBoxContext';
 import './Register.scss';
 

@@ -6,13 +6,9 @@ import './AccountBox.scss';
 import { AccountBoxContext } from '../../context/AccountBoxContext';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import astronauta from '../../assets/images/astronauta.png';
-import robal from '../../assets/images/robal.png';
 import planeta from '../../assets/images/planeta.png';
 import gwiazdeczka from '../../assets/images/gwiazdeczka.png'; 
-import rakieta from '../../assets/images/rakieta.png';
-import krolik from '../../assets/images/krolik.png';
 import chomiczek from '../../assets/images/chomiczek.png';
-import kometa from '../../assets/images/kometa.png';
 
 
 const variants = {
@@ -97,7 +93,7 @@ function AccountBox() {
                         </h3>
                     </div>
                     <div className="circle">
-                    <img src={chomiczek}></img>
+                        <img src={chomiczek}></img>
                     </div>
                     <div className="image-in-circle">
                         <img className="img-astronauta" src={astronauta}></img>
