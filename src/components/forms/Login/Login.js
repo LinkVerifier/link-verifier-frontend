@@ -3,6 +3,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../../../util/Authentication/auth-service";
+import {withRouter} from "react-router-dom";
 import './Login.scss';
 import { AccountBoxContext } from '../../../context/AccountBoxContext';
 
@@ -31,9 +32,12 @@ function Login(props) {
     const { switchToSignUp } = useContext(AccountBoxContext);
 
     useEffect(() => {
-        console.log("ELO");
+        console.log(AuthService.getCurrentUser());
+        if (AuthService.getCurrentUser() !== null) {
+            console.log("elo");
+            props.history.push("/");
+        }
         initFacebookLogin();
-        console.log("MELO");
     }, []);
 
     const onChangeEmail = (e) => {
@@ -172,4 +176,4 @@ function Login(props) {
     );
 }
 
-export default Login;
+export default withRouter(Login);

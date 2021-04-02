@@ -5,8 +5,8 @@ import {
   Route,
   withRouter,
   Link,
+  browserHistory
 } from "react-router-dom";
-import './App.css';
 import AccountBox from '../pages/AccountBox/AccountBox';
 import Home from '../pages/Home/Home';
 
@@ -15,14 +15,8 @@ function App(props) {
     <div className="AppContainer">
       <Router>
           <Switch>
-            <Route 
-              exact path="/" 
-              render={(props) => <Home {...props} />} 
-            />
-            <Route
-              exact path="/login"
-              render={(props) => <AccountBox {...props} />}
-            />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={AccountBox}/>
           </Switch>
       </Router>
     </div>

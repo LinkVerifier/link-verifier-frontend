@@ -18,6 +18,7 @@ const login = (email, password) => {
       password,
     })
     .then((response) => {
+      console.log("ELOO"+response.data.username);
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
@@ -44,7 +45,7 @@ const logout = () => {
 };
 
 const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem('user'));
+  return JSON.parse(localStorage.getItem("user"));
 };
 
 export default {
