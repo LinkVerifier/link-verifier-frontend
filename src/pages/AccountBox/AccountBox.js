@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Login from '../../components/forms/Login/Login';
 import Register from '../../components/forms/Register/Register';
 import { motion } from "framer-motion"
-import './AccountBox.scss';
 import { AccountBoxContext } from '../../context/AccountBoxContext';
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import astronauta from '../../assets/images/astronauta.png';
 import planeta from '../../assets/images/planeta.png';
 import gwiazdeczka from '../../assets/images/gwiazdeczka.png'; 
 import chomiczek from '../../assets/images/chomiczek.png';
+import { withRouter } from "react-router-dom";
+
+import './AccountBox.scss';
 
 
 const variants = {
@@ -28,10 +30,16 @@ const expandingTransition = {
     stiffness: 30,
 }
 
-function AccountBox() {
+function AccountBox(props) {
 
     const [isExpended, setExpended] = useState(false);
     const [active, setActive] = useState("singin");
+
+    useEffect(() => {
+        if (localStorage.getItem('user') !== null) {
+            props.history.push("/");
+        }
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleExpended = () => {
         setExpended(true);
@@ -93,12 +101,12 @@ function AccountBox() {
                         </h3>
                     </div>
                     <div className="circle">
-                        <img src={chomiczek}></img>
+                        <img src={chomiczek} alt="chomiczek"></img>
                     </div>
                     <div className="image-in-circle">
-                        <img className="img-astronauta" src={astronauta}></img>
-                        <img className="img-gwiazdeczka" src={gwiazdeczka}></img>
-                        <img className="img-planeta" src={planeta}></img>
+                        <img className="img-astronauta" src={astronauta} alt="astronauta"></img>
+                        <img className="img-gwiazdeczka" src={gwiazdeczka} alt="gwiazdeczka"></img>
+                        <img className="img-planeta" src={planeta} alt="planeta"></img>
                     </div>
                 </div>
             </div>
@@ -106,4 +114,4 @@ function AccountBox() {
     );
 }
 
-export default AccountBox;
+export default withRouter(AccountBox);

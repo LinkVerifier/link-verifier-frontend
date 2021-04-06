@@ -18,7 +18,6 @@ const login = (email, password) => {
       password,
     })
     .then((response) => {
-      console.log("ELOO"+response.data.username);
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
@@ -32,7 +31,6 @@ const facebookLogin = (accessToken) => {
       accessToken,
     })
     .then((response) => {
-      console.log(response.data);
       if (response.data.token) {
         localStorage.setItem("user", JSON.stringify(response.data));
       }
@@ -48,10 +46,12 @@ const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
 
-export default {
+const authService = {
   register,
   login,
   facebookLogin,
   logout,
   getCurrentUser
 };
+
+export default authService;

@@ -1,11 +1,7 @@
-import Login from '../components/forms/Login/Login';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  withRouter,
-  Link,
-  browserHistory
 } from "react-router-dom";
 import AccountBox from '../pages/AccountBox/AccountBox';
 import Home from '../pages/Home/Home';

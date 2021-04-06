@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
-import AuthService from '../../util/Authentication/auth-service';
+import './Home.scss';
 
 function Home(props) {
 
     useEffect(() => {
-        console.log(AuthService.getCurrentUser());
+        // console.log(AuthService.getCurrentUser());
     }, []);
 
     return (
-        <div>
-            
+        <div className="main-container">
+            <div className="header-container">
+                fs
+            </div>
         </div>
     );
 }
