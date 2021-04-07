@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import AccountBox from '../pages/AccountBox/AccountBox';
 import Home from '../pages/Home/Home';
+import Link from "../pages/Link/Link";
 
 function App(props) {
   return (
@@ -13,6 +14,7 @@ function App(props) {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={AccountBox}/>
+            <Route path="/links" component={Link}/>
           </Switch>
       </Router>
     </div>

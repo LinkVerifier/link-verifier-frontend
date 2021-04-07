@@ -7,7 +7,6 @@ import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import astronauta from '../../assets/images/astronauta.png';
 import planeta from '../../assets/images/planeta.png';
 import gwiazdeczka from '../../assets/images/gwiazdeczka.png'; 
-import chomiczek from '../../assets/images/chomiczek.png';
 import { withRouter } from "react-router-dom";
 
 import './AccountBox.scss';
