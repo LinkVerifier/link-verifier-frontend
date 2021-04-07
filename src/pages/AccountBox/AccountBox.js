@@ -100,9 +100,7 @@ function AccountBox(props) {
                             <span>verifier</span>
                         </h3>
                     </div>
-                    <div className="circle">
-                        <img src={chomiczek} alt="chomiczek"></img>
-                    </div>
+                    <div className="circle"></div>
                     <div className="image-in-circle">
                         <img className="img-astronauta" src={astronauta} alt="astronauta"></img>
                         <img className="img-gwiazdeczka" src={gwiazdeczka} alt="gwiazdeczka"></img>
