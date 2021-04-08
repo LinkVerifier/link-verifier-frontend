@@ -13,8 +13,17 @@ const link = (link, deliveryDate) => {
         });
 };
 
+const getLinkInfo = (id) => {
+    return axios
+        .get(API_URL + `links/${id}`)
+        .then((response) => {
+            return response.data;
+        });
+};
+
 const api = {
-    link
+    link,
+    getLinkInfo
 };
   
 export default api;

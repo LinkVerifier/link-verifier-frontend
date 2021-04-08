@@ -1,0 +1,50 @@
+@import "../../../assets/styles/colors";
+
+
+.header-container{
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    a{
+        text-decoration: none;
+    }
+    #logo {
+        display: block;
+        position: relative;
+        margin: 0;
+        margin-right: 3em;
+        z-index: 1;
+        h3{
+            margin: 0;
+            span {
+                color: $yellow-primary-light;
+                font-size: 1em;
+                .logo {
+                    fill: black;
+                    width: 2em;
+                    height: auto;
+                    margin: 10px;
+                }
+            }
+            span:nth-child(2){
+                color: black;
+            }
+        }
+    }
+    
+    .input-container{
+        width: 500px;
+        input{
+            width: 80%;
+            height: 2.5rem;
+            font-size: 1rem;
+            border-radius: 20px;
+            border: 1px solid #ced4da;
+            outline: none;
+            padding: 0.5rem
+        }
+    }
+}

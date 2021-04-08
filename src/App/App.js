@@ -14,7 +14,7 @@ function App(props) {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={AccountBox}/>
-            <Route path="/links" component={Link}/>
+            <Route path="/links/:id" component={Link}/>
           </Switch>
       </Router>
     </div>

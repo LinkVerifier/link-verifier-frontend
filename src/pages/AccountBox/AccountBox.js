@@ -3,11 +3,11 @@ import Login from '../../components/forms/Login/Login';
 import Register from '../../components/forms/Register/Register';
 import { motion } from "framer-motion"
 import { AccountBoxContext } from '../../context/AccountBoxContext';
-import { ReactComponent as Logo } from '../../assets/images/logo.svg';
 import astronauta from '../../assets/images/astronauta.png';
 import planeta from '../../assets/images/planeta.png';
 import gwiazdeczka from '../../assets/images/gwiazdeczka.png'; 
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
+import Logo from '../../components/general/Logo/Logo'
 
 import './AccountBox.scss';
 
@@ -92,13 +92,7 @@ function AccountBox(props) {
                         {active === "singin" && <Login />}
                         {active === "singup" && <Register/>}
                     </div>
-                    <div id="logo">
-                        <h3>
-                            <span><Logo className="logo"/></span>
-                            <span>link</span>
-                            <span>verifier</span>
-                        </h3>
-                    </div>
+                    <Logo />
                     <div className="circle"></div>
                     <div className="image-in-circle">
                         <img className="img-astronauta" src={astronauta} alt="astronauta"></img>

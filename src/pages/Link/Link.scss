@@ -1,0 +1,18 @@
+@import "../../assets/styles/colors";
+
+.link-container{
+    min-height: 100vh;
+    background: $bg-img;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .link-info{
+        height: 100px;
+        width: 100%;
+        background-color: $yellow-primary-light;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
