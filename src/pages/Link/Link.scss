@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .link-info{
         height: 100px;
         width: 100%;
@@ -14,5 +15,25 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    
+    .stats-container{
+        width: 70%;
+        
+        .stats{
+            width: 100%;
+            background-color: white;
+            border: solid 1px black;
+            display: flex;
+            flex-direction: column;
+            .row{
+                display: flex;
+                flex-direction: row;
+                margin: 0;
+                span{
+                    width: 50%;
+                }
+            }
+        }
     }
 }

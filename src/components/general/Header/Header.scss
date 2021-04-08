@@ -6,7 +6,7 @@
     background-color: white;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     a{
         text-decoration: none;
@@ -34,17 +34,53 @@
             }
         }
     }
-    
+    .menu-button{
+        display: flex;
+        flex-direction: row;
+    }
+    a{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+        padding-left: 1rem;
+    }
+    svg{
+        color:black;
+    }
     .input-container{
-        width: 500px;
+        height: 2.5rem;
+        padding-left: 0.5rem;
+        // padding-right: 0.1rem;
+        display: flex;
+        flex-direction: row;
+        border: 1px solid #ced4da;
+        border-radius: 35px;
+        align-items: center;
+
         input{
-            width: 80%;
-            height: 2.5rem;
+            width: 30vw;
+            border: none;
+            height: 2rem;
             font-size: 1rem;
-            border-radius: 20px;
-            border: 1px solid #ced4da;
             outline: none;
-            padding: 0.5rem
+        }
+
+        button{
+            border: none;
+            width: 2.5rem; height: 2.5rem;
+            background-color: $yellow-primary-light;
+            border: none;
+            border-radius: 35px;
+            padding: 0.6rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            outline: none;
+            svg{
+                width: 100%;
+            }
         }
     }
 }

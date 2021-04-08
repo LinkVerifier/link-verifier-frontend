@@ -21,6 +21,23 @@ function Link(props) {
             <div className="link-info">
                 <span>Link: {link.link}</span>
             </div>
+            <div className="stats-container">
+                <h3>Statystyki</h3>
+                <div className="stats">
+                    <div className="row">
+                        <span>Ocena</span>
+                        <span>{link.rating}</span>
+                    </div>
+                    <div className="row">
+                        <span>Liczba odwiedzeń</span>
+                        <span>{link.views}</span>
+                    </div>
+                    <div className="row">
+                        <span>Ostatnia wizyta</span>
+                        <span>{link.lastVisitDate}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
