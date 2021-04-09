@@ -2,10 +2,10 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/";
 
-const link = (link, deliveryDate) => {
+const link = (linkName, deliveryDate) => {
     return axios
         .post(API_URL + "", {
-            link,
+            linkName,
             deliveryDate,
         })
         .then((response) => {

@@ -34,7 +34,7 @@ function Register(props) {
     const { switchToSignIn } = useContext(AccountBoxContext);
 
     const handleRegister = (values) => {
-        AuthService.register(values.username, values.email, values.password).then(
+        AuthService.register(values.username, values.email, values.password, Date.now()).then(
             () => {
                 console.log("zarejestrowano!");
                 switchToSignIn();

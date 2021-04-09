@@ -3,11 +3,12 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/api/auth/";
 const API_FACEBOOK_URL = "http://localhost:8080/api/auth/";
 
-const register = (username, email, password) => {
+const register = (username, email, password, creationDate) => {
   return axios.post(API_URL + "signup", {
     username,
     email,
     password,
+    creationDate,
   });
 };
 
@@ -25,10 +26,11 @@ const login = (email, password) => {
     });
 };
 
-const facebookLogin = (accessToken) => {
+const facebookLogin = (accessToken, creationDate) => {
   return axios
     .post(API_FACEBOOK_URL + "facebook/signin", {
       accessToken,
+      creationDate,
     })
     .then((response) => {
       if (response.data.token) {

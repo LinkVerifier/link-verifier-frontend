@@ -68,7 +68,7 @@ function Login(props) {
                     const facebookLoginRequest = {
                         accessToken: response.authResponse.accessToken,
                     };
-                    AuthService.facebookLogin(facebookLoginRequest.accessToken).then(
+                    AuthService.facebookLogin(facebookLoginRequest.accessToken, Date.now()).then(
                         () => {                 
                             props.history.push("/");
                         }
