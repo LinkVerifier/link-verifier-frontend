@@ -23,9 +23,17 @@ function NewComment(props) {
                 onSubmit={handleNewComment}
             >
                 <Form>
-                    <Field as="textarea" className="" name="content" placeholder="elo"/>
+                    <Field as="textarea" className="" name="content" placeholder="Twoje doświadczenie z linkiem"/>
                     {/* <textarea name="content" placeholder="eloooo"></textarea> */}
-                    <Field className="" name="opinion" type="text" placeholder="Email"/>
+                    <Field name="opinion" as="select">
+                        <option value="VIRUS">Wirus</option>
+                        <option value="FAKE_NEWS">Fake News</option>
+                        <option value="FRAUD">Oszustwo</option>
+                        <option value="INDECENT_CONTENT">Nieprzyzwoita treść</option>
+                        <option value="SAFE">Bezpieczna</option>
+                        <option value="NEUTRAL">Neutralna</option>
+                        <option value="RELIABLE">Zaufana</option>
+                    </Field>
                     <button className="btn" type="submit">
                         <span>Wyślij</span>
                     </button>

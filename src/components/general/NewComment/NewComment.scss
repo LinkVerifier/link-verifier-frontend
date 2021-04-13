@@ -5,6 +5,7 @@
     border: solid 1px #ced4da;
     border-radius: 10px;
     overflow: hidden;
+    background-color: white;
     
     h3{
         margin:0;
@@ -13,5 +14,54 @@
     }
     form{
         padding: 1rem;
+        display: grid;
+        grid-template-columns: 60% 39%;
+        grid-template-rows: 100px 100px;
+        column-gap: 1%;
+
+        textarea{
+            padding: 0.5rem;
+            border-radius: 10px;
+            outline:none;
+            grid-row: 1 / span 2;
+
+            &:focus{
+                box-shadow: inset 0 0 0 2px $yellow-primary-light;
+                border: none;
+            }
+
+        }
+
+        select{
+            box-sizing: border-box;
+            // border-radius: 10px;
+            outline: none;
+            height: 50px;
+            padding-left: 1rem;
+
+            &:focus{
+                box-shadow: inset 0 0 0 2px $yellow-primary-light;
+                border: none;
+            }
+            
+            option{
+                color:red
+            }
+        }
+
+        button {
+            background-color: $yellow-primary-light;
+            font-size: 15px;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            place-self: center stretch;
+            align-self: end;
+
+        }
     }
 }
