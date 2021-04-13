@@ -21,9 +21,22 @@ const getLinkInfo = (id) => {
         });
 };
 
+const newComment = (id, comment, date, opinion) => {
+    return axios
+        .post(API_URL + `links/${id}`,{
+            comment,
+            date,
+            opinion
+        })
+        .then((response) => {
+            return response.data;
+        });
+};
+
 const api = {
     link,
-    getLinkInfo
+    getLinkInfo,
+    newComment
 };
   
 export default api;

@@ -3,6 +3,8 @@ import Header from '../../components/general/Header/Header';
 import api from '../../util/api';
 import moment from 'moment'
 import './Link.scss';
+import Comments from '../../components/general/Comments/Comments';
+import NewComment from '../../components/general/NewComment/NewComment';
 
 function Link(props) {
 
@@ -11,42 +13,46 @@ function Link(props) {
     useEffect(() => {
         api.getLinkInfo(props.match.params.id).then(
             (res) => {
+                console.log(res);
                 setLink(res);
             }
         );
-        console.log(link)
     },[]);
 
     return (
         <div className="link-container">
             <Header/>
-            <div className="link-info">
+            <div className="link-name">
                 <span>Link: {link.linkName}</span>
             </div>
-            <div className="stats-container">
-                <h3>Statystyki</h3>
-                <div className="stats">
-                    <div className="row">
-                        <span>Stopień niebezpieczeństwa:</span>
-                        <span>{link.rating}</span>
-                    </div>
-                    <div className="row">
-                        <span>Liczba ocen:</span>
-                        <span>{link.c}</span>
-                    </div>
-                    <div className="row">
-                        <span>Ostatnia ocena:</span>
-                        <span>{link.rating}</span>
-                    </div>
-                    <div className="row">
-                        <span>Liczba odsłon:</span>
-                        <span>{link.views}</span>
-                    </div>
-                    <div className="row">
-                        <span>Ostatnia odsłona:</span>
-                        <span>{moment(link.lastVisitDate).format('DD/MM/YYYY')}</span>
+            <div className="link-info">
+                <div className="stats-container">
+                    <h3>Statystyki</h3>
+                    <div className="stats">
+                        <div className="row">
+                            <span>Stopień niebezpieczeństwa:</span>
+                            <span>{link.rating}</span>
+                        </div>
+                        <div className="row">
+                            <span>Liczba ocen:</span>
+                            <span>{link.c}</span>
+                        </div>
+                        <div className="row">
+                            <span>Ostatnia ocena:</span>
+                            <span>{link.rating}</span>
+                        </div>
+                        <div className="row">
+                            <span>Liczba odsłon:</span>
+                            <span>{link.views}</span>
+                        </div>
+                        <div className="row">
+                            <span>Ostatnia odsłona:</span>
+                            <span>{moment(link.lastVisitDate).format('DD/MM/YYYY')}</span>
+                        </div>
                     </div>
                 </div>
+                <NewComment id={link.id}/>
+                <Comments comments={link.comments}/>
             </div>
         </div>
     );
