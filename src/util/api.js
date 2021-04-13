@@ -23,22 +23,19 @@ const getLinkInfo = (id) => {
 };
 
 const newComment = (id, comment, date, opinion) => {
-    return axios({
-        method: 'post',
-        url: API_URL + `links/${id}`,
-        data: {
-            comment: comment,
-            date: date,
-            opinion: opinion,
-        },
-        headers: {
-            Authorization: 'Bearer ' + user.token
-        }
-    }).catch(error => {
-        console.log(error);
-    }).then((response) => {
-        return response.data;
-    });
+    return axios
+        .post(API_URL + `links/${id}`, {
+            comment,
+            date,
+            opinion
+        },{
+            headers:{
+                Authorization: 'Bearer ' + user.token
+            }
+        })
+        .then((response) => {
+            return response.data;
+        });
 };
 
 const api = {
