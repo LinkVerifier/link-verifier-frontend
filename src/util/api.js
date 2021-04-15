@@ -5,7 +5,7 @@ const token = localStorage.getItem('token');
 
 const link = (linkName, deliveryDate) => {
     return axios
-        .post(API_URL + "", {
+        .post(API_URL + "links", {
             linkName,
             deliveryDate,
         })
@@ -24,7 +24,7 @@ const getLinkInfo = (id) => {
 
 const newComment = (id, comment, date, opinion) => {
     return axios
-        .post(API_URL + `links/${id}`, {
+        .post(API_URL + `links/${id}/comments`, {
             comment,
             date,
             opinion

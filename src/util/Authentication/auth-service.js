@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
-const API_FACEBOOK_URL = "http://localhost:8080/api/auth/";
+const API_URL = "http://localhost:8080/auth/";
+const API_FACEBOOK_URL = "http://localhost:8080/auth/";
 
 const register = (username, email, password, creationDate) => {
   return axios.post(API_URL + "signup", {
