@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:8080/";
-const token = JSON.parse(localStorage.getItem('token'));
+const token = localStorage.getItem('token');
 
 const link = (linkName, deliveryDate) => {
     return axios

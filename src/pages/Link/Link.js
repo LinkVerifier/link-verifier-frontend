@@ -52,7 +52,7 @@ function Link(props) {
                     </div>
                 </div>
                 <NewComment id={link.id}/>
-                <Comments comments={link.comments}/>
+                <Comments comments={link.comments} linkName={link.linkName}/>
             </div>
         </div>
     );

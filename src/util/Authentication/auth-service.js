@@ -20,7 +20,7 @@ const login = (email, password) => {
     })
     .then((response) => {
       if (response.data.token) {
-        localStorage.setItem("token", JSON.stringify(response.data));
+        localStorage.setItem("token", response.data.token);
       }
       return response.data;
     });
@@ -34,7 +34,7 @@ const facebookLogin = (accessToken, creationDate) => {
     })
     .then((response) => {
       if (response.data.token) {
-        localStorage.setItem("token", JSON.stringify(response.data));
+        localStorage.setItem("token", response.data.token);
       }
       return response.data;
     });

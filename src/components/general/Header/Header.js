@@ -16,13 +16,13 @@ function Header(props) {
     const [link, setLink] = useState('');
 
     useEffect(() => {
-        if(localStorage.getItem('user') !== null){
+        if(localStorage.getItem('token') !== null){
             setIsLogged(true);
         }
     }, []);
 
     const logout = () =>{
-        localStorage.removeItem('user');
+        localStorage.removeItem('token');
         window.location.reload();
     }
 
