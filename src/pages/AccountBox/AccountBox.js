@@ -35,7 +35,7 @@ function AccountBox(props) {
     const [active, setActive] = useState("singin");
 
     useEffect(() => {
-        if (localStorage.getItem('user') !== null) {
+        if (localStorage.getItem('token') !== null) {
             props.history.push("/");
         }
     }, []); // eslint-disable-line react-hooks/exhaustive-deps

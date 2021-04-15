@@ -20,7 +20,7 @@ const login = (email, password) => {
     })
     .then((response) => {
       if (response.data.token) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+        localStorage.setItem("token", JSON.stringify(response.data));
       }
       return response.data;
     });
@@ -34,18 +34,22 @@ const facebookLogin = (accessToken, creationDate) => {
     })
     .then((response) => {
       if (response.data.token) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+        localStorage.setItem("token", JSON.stringify(response.data));
       }
       return response.data;
     });
 }
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.removeItem("token");
 };
 
 const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+  return axios
+    .get(API_URL + `users/get_user`)
+    .then((response) => {
+        return response.data;
+    });
 };
 
 const authService = {
