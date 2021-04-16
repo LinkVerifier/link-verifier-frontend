@@ -3,13 +3,15 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import Footer from "../components/general/Footer/Footer";
 import AccountBox from '../pages/AccountBox/AccountBox';
 import Home from '../pages/Home/Home';
 import Link from "../pages/Link/Link";
+import './App.scss'
 
 function App(props) {
   return (
-    <div className="AppContainer">
+    <div className="app-container">
       <Router>
           <Switch>
             <Route exact path="/" component={Home} />

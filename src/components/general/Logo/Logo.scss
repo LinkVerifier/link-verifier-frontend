@@ -1,24 +1,27 @@
 @import "../../../assets/styles/colors";
 
-#logo {
-    display: block;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    margin-right: 3em;
-    z-index: 1;
-    span {
-        color: $yellow-primary-light;
-        font-size: 1em;
-        .logo {
-            fill: black;
-            width: 2em;
-            height: auto;
-            margin: 10px;
+a{
+    text-decoration: none;
+    #logo {
+        display: block;
+        position: relative;
+        // bottom: 0;
+        // right: 0;
+        margin: auto;
+        margin-right: 3em;
+        z-index: 1;
+        span {
+            color: $yellow-primary-light;
+            font-size: 1em;
+            .logo {
+                fill: black;
+                width: 2em;
+                height: auto;
+                margin: 10px;
+            }
         }
+        span:nth-child(2){
+            color: black;
+        } 
     }
-    span:nth-child(2){
-        color: black;
-    } 
 }

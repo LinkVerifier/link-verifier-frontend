@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage} from 'formik';
 import './NewComment.scss';
 import authService from '../../../util/Authentication/auth-service';
@@ -7,12 +8,13 @@ import api from '../../../util/api';
 function NewComment(props) {
 
     const handleNewComment = (values) =>{
-        console.log(values.content);
-        api.newComment(props.id, values.content,Date.now(), values.opinion).then(
-            (req) => {
-                console.log("dodano nowy komentarz");
-            }
-        )
+        if(localStorage.getItem('token')===null){
+            props.history.push('/login');
+        }else{
+            api.newComment(props.id, values.content,Date.now(), values.opinion).then(
+                window.location.reload()
+            );
+        }
     }
 
     return (
@@ -26,6 +28,7 @@ function NewComment(props) {
                     <Field as="textarea" className="" name="content" placeholder="Twoje doświadczenie z linkiem"/>
                     {/* <textarea name="content" placeholder="eloooo"></textarea> */}
                     <Field name="opinion" as="select">
+                        {/* <option value="VIRUS">Wybierz jedną z opcji</option> */}
                         <option value="VIRUS">Wirus</option>
                         <option value="FAKE_NEWS">Fake News</option>
                         <option value="FRAUD">Oszustwo</option>
@@ -43,4 +46,4 @@ function NewComment(props) {
     );
 }
 
-export default NewComment;
+export default withRouter(NewComment);

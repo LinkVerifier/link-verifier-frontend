@@ -14,9 +14,17 @@ const link = (linkName, deliveryDate) => {
         });
 };
 
-const getLinkInfo = (id) => {
+const getLinkById = (id) => {
     return axios
         .get(API_URL + `links/${id}`)
+        .then((response) => {
+            return response.data;
+        });
+};
+
+const getUserById = async (id) => {
+    return axios
+        .get(API_URL + `users/${id}`)
         .then((response) => {
             return response.data;
         });
@@ -40,7 +48,8 @@ const newComment = (id, comment, date, opinion) => {
 
 const api = {
     link,
-    getLinkInfo,
+    getLinkById,
+    getUserById,
     newComment
 };
   

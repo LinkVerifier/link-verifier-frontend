@@ -1,41 +1,78 @@
 import React, { useEffect, useState } from 'react';
+import api from '../../../util/api';
 import './Comments.scss';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-regular-svg-icons";
+import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
+import moment from 'moment';
 
 function Comments(props) {
 
     const [comments, setComments] = useState([]);
     const [commentsItems, setCommentsItems] = useState([]);
-    const [link, setLink] = useState('');
 
     useEffect(() => {
-    },[]);
-
-    useEffect(() => {
-        setLink(props.linkName);
         setComments(props.comments);
     }, [props]);
 
-    useEffect(() => {
+    useEffect(async() => {
         if(comments){
-            setCommentsItems(comments.map(comment => 
-                <div>
-                    Treść: {comment.comment}
-                    Opinia: {comment.opinion.name}
-                    {/* LikeUp: {comment.usersWhoLike.length}
-                    LikeDown: {comment.usersWhoDisLike.length} */}
-                </div>
-                ));
+            setCommentsItems(await Promise.all(comments.map((comment) =>{
+                return addComment(comment);
+            })));
         }
     }, [comments]);
 
-    // const numbers = [1, 2, 3, 4, 5];
-    // const listItems = numbers.map((number) =>
-    //     <li>{number}</li>
-    // );
+    const addComment = async (comment) => {
+        const user = await api.getUserById(comment.userId);
 
-    // const list = props.comments.map((item) =>(
-    //     <li>item</li>
-    // ));
+        return  <div className="comment">
+                    <div className="user-photo"><img src={user.profilePicture} alt="Profile Picture" height='100px' width='100px'/></div>
+                    <div className="info">
+                        <div className="user-name">{user.username}</div>
+                        <div className="content">{comment.comment}</div>
+                        <div className="details">
+                            <div className="date">
+                                <FontAwesomeIcon icon={faClock} />
+                                {moment(comment.creationDate).format('DD.MM.YYYY')}
+                            </div>
+                            <div className="likes">
+                                <div className="thumbs">
+                                    <FontAwesomeIcon icon={faThumbsUp} size='sm'/>
+                                    {comment.usersWhoLike ? comment.usersWhoLike : '0'}
+                                </div>
+                                <div className="thumbs">
+                                    <FontAwesomeIcon icon={faThumbsDown} size='sm'/>
+                                    {comment.usersWhoDisLike ? comment.usersWhoDisLike : '0'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="opinion">{changeOpinion(comment.opinion.name)}</div>
+                </div>
+    }
+
+    const changeOpinion = (opinion) => {
+        switch (opinion) {
+            case 'VIRUS':
+                return 'Wirus';
+            case 'FAKE_NEWS':
+                return 'Fake News';
+            case 'FRAUD':
+                return 'Oszustwo';
+            case 'NEUTRAL':
+                return 'Neutralny';
+            case 'INDECENT_CONTENT':
+                return 'Nieprzyzwoita treść';
+            case 'SAFE':
+                return 'Bezpieczna';
+            case 'RELIABLE':
+                return 'Wiarygodna';
+            default:
+                return 'Brak';
+        }
+    }
 
     return (
         <div>
