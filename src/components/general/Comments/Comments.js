@@ -24,6 +24,14 @@ function Comments(props) {
         }
     }, [comments]);
 
+    const handleLike = () =>{
+
+    }
+    const handleUnLike = () =>{
+
+    }
+
+
     const addComment = async (comment) => {
         const user = await api.getUserById(comment.userId);
 
@@ -35,40 +43,41 @@ function Comments(props) {
                         <div className="details">
                             <div className="date">
                                 <FontAwesomeIcon icon={faClock} />
-                                {moment(comment.creationDate).format('DD.MM.YYYY')}
+                                &nbsp;{moment(comment.creationDate).format('DD.MM.YYYY')}
                             </div>
                             <div className="likes">
-                                <div className="thumbs">
+                                <div className="thumbs" onClick={handleLike}>
                                     <FontAwesomeIcon icon={faThumbsUp} size='sm'/>
                                     {comment.usersWhoLike ? comment.usersWhoLike : '0'}
                                 </div>
-                                <div className="thumbs">
+                                <div className="thumbs" onClick={handleUnLike}>
                                     <FontAwesomeIcon icon={faThumbsDown} size='sm'/>
                                     {comment.usersWhoDisLike ? comment.usersWhoDisLike : '0'}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="opinion">{changeOpinion(comment.opinion.name)}</div>
+                    {changeOpinion(comment.opinion.name)}
+                    {/* <div className="opinion">{changeOpinion(comment.opinion.name)}</div> */}
                 </div>
     }
 
     const changeOpinion = (opinion) => {
         switch (opinion) {
             case 'VIRUS':
-                return 'Wirus';
+                return <div className="opinion negative">Wirus</div>;
             case 'FAKE_NEWS':
-                return 'Fake News';
+                return <div className="opinion negative">Fake News</div>;
             case 'FRAUD':
-                return 'Oszustwo';
+                return <div className="opinion negative">Oszustwo</div>;
             case 'NEUTRAL':
-                return 'Neutralny';
+                return <div className="opinion neutral">Neutralny</div>;
             case 'INDECENT_CONTENT':
-                return 'Nieprzyzwoita treść';
+                return <div className="opinion negative">Nieprzyzwoita treść</div>;
             case 'SAFE':
-                return 'Bezpieczna';
+                return <div className="opinion positive">Bezpieczna</div>;
             case 'RELIABLE':
-                return 'Wiarygodna';
+                return <div className="opinion positive">Wiarygodna</div>;
             default:
                 return 'Brak';
         }

@@ -4,8 +4,8 @@ import { withRouter } from "react-router-dom";
 import { AccountBoxContext } from '../../../context/AccountBoxContext';
 import { Formik, Form, Field, ErrorMessage} from 'formik';
 import { isEmail } from "validator";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import './Login.scss';
 
 

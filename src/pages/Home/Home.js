@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from '../../assets/images/logo.svg';
+import Footer from '../../components/general/Footer/Footer';
 import Header from '../../components/general/Header/Header';
 import api from '../../util/api';
 import './Home.scss';
@@ -30,6 +31,7 @@ function Home(props) {
     return (
         <div className="home-container">
             <Header />
+            <Footer />
         </div>
     );
 }

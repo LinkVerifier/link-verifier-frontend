@@ -4,7 +4,7 @@ import api from '../../util/api';
 import moment from 'moment'
 import './Link.scss';
 import Comments from '../../components/general/Comments/Comments';
-import NewComment from '../../components/general/NewComment/NewComment';
+import NewComment from '../../components/forms/NewComment/NewComment';
 import Footer from '../../components/general/Footer/Footer';
 
 function Link(props) {
@@ -14,7 +14,6 @@ function Link(props) {
     useEffect(() => {
         api.getLinkById(props.match.params.id).then(
             (res) => {
-                console.log(res);
                 setLink(res);
             }
         );

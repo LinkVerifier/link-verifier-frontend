@@ -1,7 +1,8 @@
 import axios from "axios";
+import authHeader from "./Authentication/auth-header"
 
 const API_URL = "http://localhost:8080/";
-const token = localStorage.getItem('token');
+// const token = localStorage.getItem('token');
 
 const link = (linkName, deliveryDate) => {
     return axios
@@ -38,7 +39,7 @@ const newComment = (id, comment, date, opinion) => {
             opinion
         },{
             headers:{
-                Authorization: 'Bearer ' + token
+                authHeader
             }
         })
         .then((response) => {
