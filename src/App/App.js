@@ -18,6 +18,7 @@ function App(props) {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={AccountBox}/>
             <Route path="/links/:id" component={Link}/>
+            <Route path="/users/:id" component={Profile}/>
             <Route path="/profile" component={Profile}/>
           </Switch>
       </Router>
