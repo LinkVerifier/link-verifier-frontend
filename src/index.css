@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Calluna-Regular';
+  /* font-style: normal;
+  font-weight: normal; */
+  src: local('Calluna-Regular'), url(./assets/fonts/Calluna-Regular.otf) format('otf');
+}

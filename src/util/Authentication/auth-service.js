@@ -1,10 +1,11 @@
 import axios from "axios";
+import authHeader from "./auth-header"
 
-const API_URL = "http://localhost:8080/auth/";
+const API_URL = "http://localhost:8080/";
 const API_FACEBOOK_URL = "http://localhost:8080/auth/";
 
 const register = (username, email, password, creationDate) => {
-  return axios.post(API_URL + "signup", {
+  return axios.post(API_URL + "auth/signup", {
     username,
     email,
     password,
@@ -14,7 +15,7 @@ const register = (username, email, password, creationDate) => {
 
 const login = (email, password) => {
   return axios
-    .post(API_URL + "signin", {
+    .post(API_URL + "auth/signin", {
       email,
       password,
     })
@@ -46,7 +47,10 @@ const logout = () => {
 
 const getCurrentUser = () => {
   return axios
-    .get(API_URL + `users/get_user`)
+    .get(API_URL + `users/get_user`,
+      {
+        headers: authHeader()
+      })
     .then((response) => {
         return response.data;
     });

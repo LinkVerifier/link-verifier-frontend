@@ -1,6 +1,14 @@
 @import "../assets/styles/colors";
 
+@font-face {
+    font-family: 'Calluna-Regular';
+    /* font-style: normal;
+    font-weight: normal; */
+    src: local('Calluna-Regular'), url(../assets/fonts/Calluna-Regular.otf) format('otf');
+  }
+
 .app-container{
     min-height: 100vh;
     background: $bg-img;
+    // font-family: Calluna-Regular
 }

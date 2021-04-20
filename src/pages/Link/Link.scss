@@ -11,7 +11,11 @@
         height: 100px;
         width: 100%;
         font-size: 2rem;
-        background-color: $yellow-primary-light;
+        background: linear-gradient(
+            58deg,
+            $yellow-primary-light 20%,
+            $yellow-primary-dark 100%
+            );
         display: flex;
         flex-direction: column;
         justify-content: center;
