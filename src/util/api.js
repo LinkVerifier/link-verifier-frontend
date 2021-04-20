@@ -2,7 +2,6 @@ import axios from "axios";
 import authHeader from "./Authentication/auth-header"
 
 const API_URL = "http://localhost:8080/";
-// const token = localStorage.getItem('token');
 
 const link = (linkName, deliveryDate) => {
     return axios
@@ -23,6 +22,30 @@ const getLinkById = (id) => {
         });
 };
 
+const putLike = async (id) => {
+    console.log(id);
+    return axios
+        .put(API_URL + `comments/${id}/like`,{},
+        {
+            headers: authHeader()
+        })
+        .then((response) => {
+            return response.data;
+        });
+};
+
+const putDisLike = async (id) => {
+    return axios
+        .put(API_URL + `comments/${id}/dislike`,{},
+        {
+            headers: authHeader()
+        })
+        .then((response) => {
+            console.log(response.data);
+            return response.data;
+        });
+};
+
 const getUserById = async (id) => {
     return axios
         .get(API_URL + `users/${id}`)
@@ -38,9 +61,7 @@ const newComment = (id, comment, date, opinion) => {
             date,
             opinion
         },{
-            headers:{
-                authHeader
-            }
+            headers: authHeader()
         })
         .then((response) => {
             return response.data;
@@ -51,7 +72,9 @@ const api = {
     link,
     getLinkById,
     getUserById,
-    newComment
+    newComment,
+    putLike,
+    putDisLike,
 };
   
 export default api;

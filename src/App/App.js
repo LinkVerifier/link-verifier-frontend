@@ -7,6 +7,7 @@ import {
 import AccountBox from '../pages/AccountBox/AccountBox';
 import Home from '../pages/Home/Home';
 import Link from "../pages/Link/Link";
+import Profile from "../pages/Profile/Profile";
 import './App.scss'
 
 function App(props) {
@@ -17,6 +18,7 @@ function App(props) {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={AccountBox}/>
             <Route path="/links/:id" component={Link}/>
+            <Route path="/profile" component={Profile}/>
           </Switch>
       </Router>
     </div>

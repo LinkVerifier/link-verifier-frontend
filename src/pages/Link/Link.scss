@@ -4,12 +4,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     min-height: 100vh;
 
     .link-name{
         height: 100px;
         width: 100%;
+        font-size: 2rem;
         background-color: $yellow-primary-light;
         display: flex;
         flex-direction: column;

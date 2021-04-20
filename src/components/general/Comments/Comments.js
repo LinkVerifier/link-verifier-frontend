@@ -6,6 +6,7 @@ import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import moment from 'moment';
+import { Tooltip, Zoom } from '@material-ui/core';
 
 function Comments(props) {
 
@@ -24,12 +25,20 @@ function Comments(props) {
         }
     }, [comments]);
 
-    const handleLike = () =>{
+    const handleLike = (id, event) =>{
+        api.putLike(id).then((res)=>{
+            // event.target.value = 5;
+            window.location.reload();
+        })
+        // setCommentsItems(await Promise.all(comments.map((comment) =>{
+        //     return addComment(comment);
+        // })));
+    };
 
-    }
-    const handleUnLike = () =>{
-
-    }
+    const handleUnLike = (id) =>{
+        api.putDisLike(id).then((res)=>console.log(res))
+        window.location.reload();
+    };
 
 
     const addComment = async (comment) => {
@@ -46,14 +55,18 @@ function Comments(props) {
                                 &nbsp;{moment(comment.creationDate).format('DD.MM.YYYY')}
                             </div>
                             <div className="likes">
-                                <div className="thumbs" onClick={handleLike}>
-                                    <FontAwesomeIcon icon={faThumbsUp} size='sm'/>
-                                    {comment.usersWhoLike ? comment.usersWhoLike : '0'}
-                                </div>
-                                <div className="thumbs" onClick={handleUnLike}>
-                                    <FontAwesomeIcon icon={faThumbsDown} size='sm'/>
-                                    {comment.usersWhoDisLike ? comment.usersWhoDisLike : '0'}
-                                </div>
+                                <Tooltip TransitionComponent={Zoom} title="Polecam">
+                                    <div className="thumbs" onClick={ (e) => handleLike(comment.id, e)}>
+                                        <FontAwesomeIcon icon={faThumbsUp} size='sm'/>
+                                        {comment.usersWhoLike ? comment.usersWhoLike.length : '0'}
+                                    </div>
+                                </Tooltip>
+                                <Tooltip TransitionComponent={Zoom} title="Nie polecam">
+                                    <div className="thumbs" onClick={() => handleUnLike(comment.id)}>
+                                        <FontAwesomeIcon icon={faThumbsDown} size='sm'/>
+                                        {comment.usersWhoDisLike ? comment.usersWhoDisLike.length : '0'}
+                                    </div>
+                                </Tooltip>
                             </div>
                         </div>
                     </div>

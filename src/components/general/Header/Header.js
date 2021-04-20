@@ -60,7 +60,7 @@ function Header(props) {
                         <FontAwesomeIcon icon={faUser} size="lg"/>
                         <span>Mój profil</span>
                     </Link>
-                    <Link to={props.myroute} onClick={logout}>
+                    <Link to="#" onClick={logout}>
                         <FontAwesomeIcon icon={faSignOutAlt} size="lg"/>
                         <span>Wyloguj się</span>
                     </Link>
