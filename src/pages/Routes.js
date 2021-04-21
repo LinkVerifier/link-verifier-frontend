@@ -15,7 +15,10 @@ function Routes(props) {
     const checkConfirm = () =>{
         let params = queryString.parse(props.location.search)
         api.putConfirmProfile(params.userId, params.token).then(
-            (res) => console.log(res)
+            (res) => {
+                console.log(res)
+                props.history.push('/');
+            }
         )
     }
     return (

@@ -52,12 +52,13 @@ const getUserById = async (id) => {
 
 const putConfirmProfile = (userId, token) => {
     return axios
-        .put(API_URL + `singup/confirm`,
+        .put(API_URL + `auth/signup/confirm`,
         {
             userId,
             token
         })
         .then((response) => {
+            console.log(response.data);
             return response.data;
         });
 };

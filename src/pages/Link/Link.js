@@ -14,6 +14,7 @@ function Link(props) {
     useEffect(() => {
         api.getLinkById(props.match.params.id).then(
             (res) => {
+                console.log(res);
                 setLink(res);
             }
         );
@@ -35,7 +36,7 @@ function Link(props) {
                         </div>
                         <div className="row">
                             <span>Liczba ocen:</span>
-                            <span>{link.c}</span>
+                            <span>{link.comments && link.comments.length}</span>
                         </div>
                         <div className="row">
                             <span>Ostatnia ocena:</span>

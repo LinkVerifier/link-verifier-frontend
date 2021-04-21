@@ -36,7 +36,6 @@ function Register(props) {
     const handleRegister = (values) => {
         AuthService.register(values.username, values.email, values.password, Date.now()).then(
             () => {
-                console.log("zarejestrowano!");
                 switchToSignIn();
             }
         );
