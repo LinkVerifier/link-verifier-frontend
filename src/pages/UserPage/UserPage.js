@@ -78,9 +78,10 @@ function UserPage(props) {
                 <div className="user-info">
                     <div className="user-photo"><img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/></div>
                     <div className="user-statistics">
-                        <span>Statystyki</span>
-                        <p>Liczba komentarzy: {user && user.comments.length}</p>
-                        <p>Data utworzenia konta: {moment(user && user.creationDate).format('DD.MM.YYYY')}</p>
+                        <p>Username:</p> <p>{user && user.username}</p>
+                        <p>Email:</p> <p>{user && user.email}</p>
+                        <p>Ilość komentarzy:</p> <p>{user && user.comments.length}</p>
+                        <p>Data dołączenia:</p> <p>{moment(user && user.creationDate).format('DD.MM.YYYY')}</p>
                     </div>
                 </div>
                 <div className="right-container">

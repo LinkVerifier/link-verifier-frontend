@@ -10,7 +10,7 @@
         height: 300px;
         width: 100%;
         background: linear-gradient(
-            58deg,
+            90deg,
             $yellow-primary-light 20%,
             $yellow-primary-dark 100%
             );
@@ -41,6 +41,8 @@
             .user-statistics{
                 width: 100%;
                 padding: 1rem;
+                display: grid;
+                grid-template-columns: 50% 50%;
             }
             
         }
@@ -84,6 +86,22 @@
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
+
+                    .info{
+                        .link-name{
+                            padding-bottom: 0.5rem;
+                            a{
+                                text-decoration: none;
+                                color: $yellow-primary-dark;
+                            }
+                        }
+                        .details{
+                            .date{
+                                padding-top: 0.2rem;
+                                font-size: 13px;
+                            }
+                        }
+                    }
                     .opinion{
                         display: flex;
                         align-items: center;

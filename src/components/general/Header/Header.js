@@ -46,17 +46,17 @@ function Header(props) {
     return (
         <div className="header-container">
             <Logo />
-            <div className="input-container">
+            <form className="input-container">
                 <input
                     type="text" 
                     value={link}
                     placeholder="Link"
                     onChange={handleOnChangeLink}
                 />
-                <button onClick={submitSearch}>
+                <button onClick={submitSearch} type="submit">
                     <FontAwesomeIcon icon={faSearch} size="2x"/>
                 </button>
-            </div>
+            </form>
             {isLogged ?
                 <div className="menu-button">
                     <Link to={user && '/users/'+user.id}>

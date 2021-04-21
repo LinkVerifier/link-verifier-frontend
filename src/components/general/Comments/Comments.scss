@@ -42,6 +42,7 @@
                 margin-top: 0.5rem;
                 .date{
                     margin-right: 1rem;
+                    font-size: 13px;
                     cursor: context-menu;
                 }
                 .likes{
@@ -73,6 +74,7 @@
                 position: relative;
                 top: -0.5rem;
                 align-self: flex-end;
+                // background-color: $yellow-primary-dark;
                 // padding: 0;
             }
             .opinion:first-child{
