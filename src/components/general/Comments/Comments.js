@@ -43,6 +43,9 @@ function Comments(props) {
 
     const addComment = async (comment) => {
         const user = await api.getUserById(comment.userId);
+        console.log(comment);
+        // console.log('Like'+comment.usersWholike.length);
+        // console.log('DisLike'+comment.usersWhoDisLike.length);
 
         return  <div className="comment">
                     <Link to={'/users/'+user.id}>
@@ -70,7 +73,7 @@ function Comments(props) {
                                 <Tooltip TransitionComponent={Zoom} title="Nie polecam">
                                     <div className="thumbs" onClick={() => handleUnLike(comment.id)}>
                                         <FontAwesomeIcon icon={faThumbsDown} size='sm'/>
-                                        {comment.usersWhoDisLike ? comment.usersWhoDisLike.length : '0'}
+                                        {comment.usersWhoDislike ? comment.usersWhoDislike.length : '0'}
                                     </div>
                                 </Tooltip>
                             </div>

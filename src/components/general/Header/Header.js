@@ -65,13 +65,13 @@ function Header(props) {
                         <span>Wyloguj się</span>
                     </Link>
                 </div> :
-                <Link to='/login'>
-                    <FontAwesomeIcon icon={faSignInAlt} size="lg"/>
-                    <span>Zaloguj się</span>
-                </Link>
+                <div className="menu-button">
+                    <Link to='/login'>
+                        <FontAwesomeIcon icon={faSignInAlt} size="lg"/>
+                        <span>Zaloguj się</span>
+                    </Link>
+                </div>
             }
-            {/* <Link to="/about">About</Link> */}
-            {/* <FontAwesomeIcon icon={faSignOutAlt} size="4x" className="logout-icon"/> */}
         </div>
     );
 }

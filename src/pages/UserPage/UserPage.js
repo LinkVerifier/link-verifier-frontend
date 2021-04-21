@@ -65,7 +65,7 @@ function UserPage(props) {
             <div className="profile-header" />
             <div className="profile-info" >
                 <div className="user-info">
-                    <div className="user-photo"><img src={user && user.profilePicture} alt="Profile Picture" height='200px' width='200px'/></div>
+                    <div className="user-photo"><img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/></div>
                     <div className="user-statistics">
                         <span>Statystyki</span>
                         <p>Data utworzenia konta: {moment(user && user.creationDate).format('DD.MM.YYYY')}</p>

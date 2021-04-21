@@ -1,8 +1,9 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { withRouter, Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage} from 'formik';
 import './NewComment.scss';
 import api from '../../../util/api';
+import userEvent from '@testing-library/user-event';
 
 const validateComment = (values) => {
     const errors = {};
@@ -15,6 +16,14 @@ const validateComment = (values) => {
 };
 
 function NewComment(props) {
+
+    const [isUser, setIsUser] = useState(false);
+
+    useEffect(()=>{
+        if(localStorage.getItem('token')!==null){
+            setIsUser(true);
+        }
+    },[])
 
     const handleNewComment = (values) =>{
         if(localStorage.getItem('token')===null){
@@ -29,6 +38,7 @@ function NewComment(props) {
     return (
         <div className="newcomment-container">
             <h3>Dodaj Komentarz</h3>
+            {isUser ?
             <Formik
                 initialValues={{content: "", opinion: "" }}
                 validate={validateComment}
@@ -52,6 +62,8 @@ function NewComment(props) {
                     </button>
                 </Form>
             </Formik>
+            : <p><Link to='/login'>Zaloguj się </Link>
+                aby dodać Komentarz</p>}
         </div>
     );
 }
