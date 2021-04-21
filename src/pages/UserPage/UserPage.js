@@ -6,15 +6,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { Tooltip, Zoom } from '@material-ui/core';
 import moment from 'moment'
-import './Profile.scss';
+import './UserPage.scss';
+import api from '../../util/api';
 
-function Profile(props) {
+function UserPage(props) {
 
     const [user, setUser] = useState();
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        authService.getCurrentUser().then((res)=> {
+        api.getUserById(props.match.params.id).then((res)=> {
             console.log(res);
             setUser(res);
             setComments(res.comments);
@@ -83,4 +84,4 @@ function Profile(props) {
     );
 }
 
-export default Profile;
+export default UserPage;

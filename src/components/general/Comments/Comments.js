@@ -7,6 +7,7 @@ import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import moment from 'moment';
 import { Tooltip, Zoom } from '@material-ui/core';
+import {Link, withRouter} from 'react-router-dom';
 
 function Comments(props) {
 
@@ -40,14 +41,19 @@ function Comments(props) {
         window.location.reload();
     };
 
-
     const addComment = async (comment) => {
         const user = await api.getUserById(comment.userId);
 
         return  <div className="comment">
-                    <div className="user-photo"><img src={user.profilePicture} alt="Profile Picture" height='100px' width='100px'/></div>
+                    <Link to={'/users/'+user.id}>
+                        <div className="user-photo">
+                            <img src={user.profilePicture} alt="Profile Picture" height='100px' width='100px'/>
+                        </div>
+                    </Link>
                     <div className="info">
-                        <div className="user-name">{user.username}</div>
+                        <Link to={'/users/'+user.id}>
+                            <div className="user-name">{user.username}</div>
+                        </Link>
                         <div className="content">{comment.comment}</div>
                         <div className="details">
                             <div className="date">
@@ -104,4 +110,4 @@ function Comments(props) {
     );
 };
 
-export default Comments;
+export default withRouter(Comments);

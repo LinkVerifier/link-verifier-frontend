@@ -3,6 +3,8 @@ import authHeader from "./Authentication/auth-header"
 
 const API_URL = "http://localhost:8080/";
 
+// POST
+
 const link = (linkName, deliveryDate) => {
     return axios
         .post(API_URL + "links", {
@@ -14,6 +16,22 @@ const link = (linkName, deliveryDate) => {
         });
 };
 
+const newComment = (id, comment, date, opinion) => {
+    return axios
+        .post(API_URL + `links/${id}/comments`, {
+            comment,
+            date,
+            opinion
+        },{
+            headers: authHeader()
+        })
+        .then((response) => {
+            return response.data;
+        });
+};
+
+// GET
+
 const getLinkById = (id) => {
     return axios
         .get(API_URL + `links/${id}`)
@@ -22,8 +40,29 @@ const getLinkById = (id) => {
         });
 };
 
+const getUserById = async (id) => {
+    return axios
+        .get(API_URL + `users/${id}`)
+        .then((response) => {
+            return response.data;
+        });
+};
+
+// PUT
+
+const putConfirmProfile = (userId, token) => {
+    return axios
+        .put(API_URL + `singup/confirm`,
+        {
+            userId,
+            token
+        })
+        .then((response) => {
+            return response.data;
+        });
+};
+
 const putLike = async (id) => {
-    console.log(id);
     return axios
         .put(API_URL + `comments/${id}/like`,{},
         {
@@ -46,33 +85,12 @@ const putDisLike = async (id) => {
         });
 };
 
-const getUserById = async (id) => {
-    return axios
-        .get(API_URL + `users/${id}`)
-        .then((response) => {
-            return response.data;
-        });
-};
-
-const newComment = (id, comment, date, opinion) => {
-    return axios
-        .post(API_URL + `links/${id}/comments`, {
-            comment,
-            date,
-            opinion
-        },{
-            headers: authHeader()
-        })
-        .then((response) => {
-            return response.data;
-        });
-};
-
 const api = {
     link,
+    newComment,
     getLinkById,
     getUserById,
-    newComment,
+    putConfirmProfile,
     putLike,
     putDisLike,
 };
