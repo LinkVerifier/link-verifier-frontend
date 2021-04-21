@@ -8,11 +8,19 @@ import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import moment from 'moment';
 import { Tooltip, Zoom } from '@material-ui/core';
 import {Link, withRouter} from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import authService from '../../../util/Authentication/auth-service';
 
 function Comments(props) {
 
     const [comments, setComments] = useState([]);
     const [commentsItems, setCommentsItems] = useState([]);
+    // const [currentUser, setCurrentUser] = useState({});
+
+    useEffect(() => {
+        // authService.getCurrentUser().then((res) => setCurrentUser(res));
+    }, []);
 
     useEffect(() => {
         setComments(props.comments);
@@ -26,7 +34,7 @@ function Comments(props) {
         }
     }, [comments]);
 
-    const handleLike = (id, event) =>{
+    const handleLike = (id) =>{
         api.putLike(id).then((res)=>{
             api.getLinkById(props.match.params.id).then(
                 (res)=>{
@@ -46,8 +54,16 @@ function Comments(props) {
         })
     };
 
+    const deleteComment = (id) =>{
+        api.deleteComment(id).then(
+            (res) =>{
+                window.location.reload();
+            })
+    }
+
     const addComment = async (comment) => {
         const user = await api.getUserById(comment.userId);
+        const currentUser = await authService.getCurrentUser();
 
         return  <div className="comment">
                     <Link to={'/users/'+user.id}>
@@ -67,7 +83,7 @@ function Comments(props) {
                             </div>
                             <div className="likes">
                                 <Tooltip TransitionComponent={Zoom} title="Polecam">
-                                    <div className="thumbs" onClick={ (e) => handleLike(comment.id, e)}>
+                                    <div className="thumbs" onClick={ (e) => handleLike(comment.id)}>
                                         <FontAwesomeIcon icon={faThumbsUp} size='sm'/>
                                         {comment.usersWhoLike ? comment.usersWhoLike.length : '0'}
                                     </div>
@@ -81,8 +97,14 @@ function Comments(props) {
                             </div>
                         </div>
                     </div>
-                    {changeOpinion(comment.opinion.name)}
-                    {/* <div className="opinion">{changeOpinion(comment.opinion.name)}</div> */}
+                    <div className="rightSide-comment">
+                        {currentUser.id === user.id &&
+                            <IconButton aria-label="delete" size="small" onClick={() => deleteComment(comment.id)}>
+                                <DeleteIcon />
+                            </IconButton>
+                        }
+                        {changeOpinion(comment.opinion.name)}
+                    </div>
                 </div>
     }
 

@@ -40,7 +40,7 @@ const getLinkById = (id) => {
         });
 };
 
-const getUserById = async (id) => {
+const getUserById = (id) => {
     return axios
         .get(API_URL + `users/${id}`)
         .then((response) => {
@@ -61,7 +61,7 @@ const putConfirmProfile = (userId, token) => {
         });
 };
 
-const putLike = async (id) => {
+const putLike = (id) => {
     return axios
         .put(API_URL + `comments/${id}/like`,{},
         {
@@ -72,7 +72,7 @@ const putLike = async (id) => {
         });
 };
 
-const putDisLike = async (id) => {
+const putDisLike = (id) => {
     return axios
         .put(API_URL + `comments/${id}/dislike`,{},
         {
@@ -84,6 +84,12 @@ const putDisLike = async (id) => {
         });
 };
 
+const deleteComment = (id) => {
+    return axios.delete(API_URL + `comments/${id}`, {
+        headers: authHeader()
+      });
+}
+
 const api = {
     link,
     newComment,
@@ -92,6 +98,7 @@ const api = {
     putConfirmProfile,
     putLike,
     putDisLike,
+    deleteComment
 };
   
 export default api;
