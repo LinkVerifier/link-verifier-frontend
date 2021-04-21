@@ -51,12 +51,10 @@ const getUserById = async (id) => {
 // PUT
 
 const putConfirmProfile = (userId, token) => {
+    console.log(userId);
+    console.log(token);
     return axios
-        .put(API_URL + `auth/signup/confirm`,
-        {
-            userId,
-            token
-        })
+        .put(API_URL + `auth/signup/confirm?userId=${userId}&token=${token}`)
         .then((response) => {
             console.log(response.data);
             return response.data;

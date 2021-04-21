@@ -28,17 +28,22 @@ function Comments(props) {
 
     const handleLike = (id, event) =>{
         api.putLike(id).then((res)=>{
-            // event.target.value = 5;
-            window.location.reload();
+            api.getLinkById(props.match.params.id).then(
+                (res)=>{
+                    setComments(res.comments);
+                }
+            )
         })
-        // setCommentsItems(await Promise.all(comments.map((comment) =>{
-        //     return addComment(comment);
-        // })));
     };
 
     const handleUnLike = (id) =>{
-        api.putDisLike(id).then((res)=>console.log(res))
-        window.location.reload();
+        api.putDisLike(id).then((res)=>{
+            api.getLinkById(props.match.params.id).then(
+                (res)=>{
+                    setComments(res.comments);
+                }
+            )
+        })
     };
 
     const addComment = async (comment) => {
