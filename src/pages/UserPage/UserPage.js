@@ -8,11 +8,13 @@ import { Tooltip, Zoom } from '@material-ui/core';
 import moment from 'moment'
 import './UserPage.scss';
 import api from '../../util/api';
+import {Link} from 'react-router-dom';
 
 function UserPage(props) {
 
     const [user, setUser] = useState();
     const [comments, setComments] = useState([]);
+    const [commentsItems, setCommentsItems] = useState([]);
 
     useEffect(() => {
         api.getUserById(props.match.params.id).then((res)=> {
@@ -22,21 +24,30 @@ function UserPage(props) {
         });
     },[]);
 
-    const addComments = (comments) => {
-        return  comments.map(comment =>
-            <div className="comment">
-                <div className="info">
-                    <div className="content">{comment.comment}</div>
-                    <div className="details">
-                        <div className="date">
-                            <FontAwesomeIcon icon={faClock} />
-                            &nbsp;{moment(comment.creationDate).format('DD.MM.YYYY')}
+    useEffect(async() => {
+        if(comments){
+            setCommentsItems(await Promise.all(comments.map((comment) =>{
+                return addComment(comment);
+            })));
+        }
+    }, [comments]);
+
+    const addComment = async (comment) => {
+        const link = await api.getLinkById(comment.linkId);
+        return  <div className="comment">
+                    <div className="info">
+                        <div className="link-name">Link: <Link to={"/links/"+link.id}>{link && link.linkName}</Link></div>
+                        <div className="content">{comment.comment}</div>
+                        <div className="details">
+                            <div className="date">
+                                <FontAwesomeIcon icon={faClock} />
+                                &nbsp;{moment(comment.creationDate).format('DD.MM.YYYY')}
+                            </div>
                         </div>
                     </div>
+                    {changeOpinion(comment.opinion.name)}
                 </div>
-                {changeOpinion(comment.opinion.name)}
-            </div>
-    )}
+    }
 
     const changeOpinion = (opinion) => {
         switch (opinion) {
@@ -68,6 +79,7 @@ function UserPage(props) {
                     <div className="user-photo"><img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/></div>
                     <div className="user-statistics">
                         <span>Statystyki</span>
+                        <p>Liczba komentarzy: {user && user.comments.length}</p>
                         <p>Data utworzenia konta: {moment(user && user.creationDate).format('DD.MM.YYYY')}</p>
                     </div>
                 </div>
@@ -75,7 +87,7 @@ function UserPage(props) {
                     <div className="user-name">{user && user.username}</div>
                     <p>Komentarze</p>
                     <div className="user-comments">
-                        {addComments(comments)}
+                        {commentsItems}
                     </div>
                 </div>
             </div>

@@ -8,16 +8,19 @@ import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import './Header.scss';
+import authService from '../../../util/Authentication/auth-service';
 
 
 function Header(props) {
 
     const [isLogged, setIsLogged] = useState(false);
+    const [user, setUser] = useState();
     const [link, setLink] = useState('');
 
     useEffect(() => {
         if(localStorage.getItem('token') !== null){
             setIsLogged(true);
+            authService.getCurrentUser().then((res)=>setUser(res))
         }
     }, []);
 
@@ -56,7 +59,7 @@ function Header(props) {
             </div>
             {isLogged ?
                 <div className="menu-button">
-                    <Link to='/profile'>
+                    <Link to={user && '/users/'+user.id}>
                         <FontAwesomeIcon icon={faUser} size="lg"/>
                         <span>Mój profil</span>
                     </Link>
