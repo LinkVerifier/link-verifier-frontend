@@ -34,6 +34,14 @@
             }
 
         }
+        // .opinion{
+        //     &.negative{
+        //         color:red;
+        //     }
+        // }
+        // .Mui-selected{
+        //     color:red;
+        // }
 
         select{
             box-sizing: border-box;
@@ -58,6 +66,10 @@
                     color:#08cbff;
                 }
             }
+            // option:last-child{
+            //     border-bottom-left-radius: 50%;
+            //     overflow: hidden;
+            // }
         }
         
         .alert{

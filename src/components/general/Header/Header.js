@@ -22,7 +22,7 @@ function Header(props) {
             setIsLogged(true);
             authService.getCurrentUser().then((res)=>setUser(res))
         }
-    }, []);
+    },[]);
 
     const logout = () =>{
         localStorage.removeItem('token');

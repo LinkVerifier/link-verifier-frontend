@@ -19,7 +19,6 @@ function Comments(props) {
     // const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {
-        // authService.getCurrentUser().then((res) => setCurrentUser(res));
     }, []);
 
     useEffect(() => {
@@ -62,50 +61,52 @@ function Comments(props) {
     }
 
     const addComment = async (comment) => {
-        const user = await api.getUserById(comment.userId);
-        const currentUser = await authService.getCurrentUser();
+        if(comment!==null){
+            const user = await api.getUserById(comment.userId);
+            const currentUser = await authService.getCurrentUser();
 
-        return  <div className="comment">
-                    <Link to={'/users/'+user.id}>
-                        <div className="user-photo">
-                            <img src={user.profilePicture} alt="Profile Picture" height='100px' width='100px'/>
-                        </div>
-                    </Link>
-                    <div className="info">
+            return  <div className="comment">
                         <Link to={'/users/'+user.id}>
-                            <div className="user-name">{user.username}</div>
-                        </Link>
-                        <div className="content">{comment.comment}</div>
-                        <div className="details">
-                            <div className="date">
-                                <FontAwesomeIcon icon={faClock} />
-                                &nbsp;{moment(comment.creationDate).format('DD.MM.YYYY')}
+                            <div className="user-photo">
+                                <img src={user.profilePicture} alt="Profile Picture" height='100px' width='100px'/>
                             </div>
-                            <div className="likes">
-                                <Tooltip TransitionComponent={Zoom} title="Polecam">
-                                    <div className="thumbs" onClick={ (e) => handleLike(comment.id)}>
-                                        <FontAwesomeIcon icon={faThumbsUp} size='sm'/>
-                                        {comment.usersWhoLike ? comment.usersWhoLike.length : '0'}
-                                    </div>
-                                </Tooltip>
-                                <Tooltip TransitionComponent={Zoom} title="Nie polecam">
-                                    <div className="thumbs" onClick={() => handleUnLike(comment.id)}>
-                                        <FontAwesomeIcon icon={faThumbsDown} size='sm'/>
-                                        {comment.usersWhoDislike ? comment.usersWhoDislike.length : '0'}
-                                    </div>
-                                </Tooltip>
+                        </Link>
+                        <div className="info">
+                            <Link to={'/users/'+user.id}>
+                                <div className="user-name">{user.username}</div>
+                            </Link>
+                            <div className="content">{comment.comment}</div>
+                            <div className="details">
+                                <div className="date">
+                                    <FontAwesomeIcon icon={faClock} />
+                                    &nbsp;{moment(comment.creationDate).format('DD.MM.YYYY')}
+                                </div>
+                                <div className="likes">
+                                    <Tooltip TransitionComponent={Zoom} title="Polecam">
+                                        <div className="thumbs" onClick={ (e) => handleLike(comment.id)}>
+                                            <FontAwesomeIcon icon={faThumbsUp} size='sm'/>
+                                            {comment.usersWhoLike ? comment.usersWhoLike.length : '0'}
+                                        </div>
+                                    </Tooltip>
+                                    <Tooltip TransitionComponent={Zoom} title="Nie polecam">
+                                        <div className="thumbs" onClick={() => handleUnLike(comment.id)}>
+                                            <FontAwesomeIcon icon={faThumbsDown} size='sm'/>
+                                            {comment.usersWhoDislike ? comment.usersWhoDislike.length : '0'}
+                                        </div>
+                                    </Tooltip>
+                                </div>
                             </div>
                         </div>
+                        <div className="rightSide-comment">
+                            {currentUser.id === user.id &&
+                                <IconButton aria-label="delete" size="small" onClick={() => deleteComment(comment.id)}>
+                                    <DeleteIcon />
+                                </IconButton>
+                            }
+                            {changeOpinion(comment.opinion.name)}
+                        </div>
                     </div>
-                    <div className="rightSide-comment">
-                        {currentUser.id === user.id &&
-                            <IconButton aria-label="delete" size="small" onClick={() => deleteComment(comment.id)}>
-                                <DeleteIcon />
-                            </IconButton>
-                        }
-                        {changeOpinion(comment.opinion.name)}
-                    </div>
-                </div>
+        }
     }
 
     const changeOpinion = (opinion) => {

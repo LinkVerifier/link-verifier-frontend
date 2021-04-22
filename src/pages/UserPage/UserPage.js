@@ -13,16 +13,20 @@ import {Link} from 'react-router-dom';
 function UserPage(props) {
 
     const [user, setUser] = useState();
+    const [isCurrentUser, setIsCurrentUser] = useState(false);
     const [comments, setComments] = useState([]);
     const [commentsItems, setCommentsItems] = useState([]);
 
     useEffect(() => {
+        authService.getCurrentUser().then((res)=>{
+            if(res.id===props.match.params.id) setIsCurrentUser(true);
+        })
         api.getUserById(props.match.params.id).then((res)=> {
-            console.log(res);
             setUser(res);
             setComments(res.comments);
         });
-    },[]);
+    }, [props]);
+
 
     useEffect(async() => {
         if(comments){
@@ -76,7 +80,20 @@ function UserPage(props) {
             <div className="profile-header" />
             <div className="profile-info" >
                 <div className="user-info">
-                    <div className="user-photo"><img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/></div>
+                    {isCurrentUser ?
+                        <div className="user-photo"> 
+                                <input type="file" id="icon-button-file"/>
+                                <Tooltip TransitionComponent={Zoom} title="Zmień zdjęcie">
+                                    <label htmlFor="icon-button-file">
+                                        <img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/>
+                                    </label>
+                                </Tooltip>  
+                        </div>
+                    : 
+                        <div className="user-photo"> 
+                            <img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/>
+                        </div>
+                    }
                     <div className="user-statistics">
                         <p>Username:</p> <p>{user && user.username}</p>
                         <p>Email:</p> <p>{user && user.email}</p>
@@ -85,7 +102,15 @@ function UserPage(props) {
                     </div>
                 </div>
                 <div className="right-container">
-                    <div className="user-name">{user && user.username}</div>
+                    {isCurrentUser ?
+                        <div className="user-name">
+                            <Tooltip TransitionComponent={Zoom} title="Zmień nick">
+                                <div>{user && user.username}</div>
+                            </Tooltip>
+                        </div>
+                    :   
+                        <div className="user-name">{user && user.username}</div>
+                    }
                     <p>Komentarze</p>
                     <div className="user-comments">
                         {commentsItems}

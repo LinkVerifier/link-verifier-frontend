@@ -4,6 +4,10 @@ import { Formik, Form, Field, ErrorMessage} from 'formik';
 import './NewComment.scss';
 import api from '../../../util/api';
 import userEvent from '@testing-library/user-event';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
 
 const validateComment = (values) => {
     const errors = {};
@@ -47,6 +51,8 @@ function NewComment(props) {
                 <Form>
                     <Field as="textarea" className="" name="content" placeholder="Twoje doświadczenie z linkiem"/>
                     <Field name="opinion" as="select" >
+                        {/* <MenuItem value="VIRUS">Wirus</MenuItem>
+                        <MenuItem value={10}>Ten</MenuItem> */}
                         <option value="" disabled hidden>Wybierz jedną z opcji...</option>
                         <option value="VIRUS" className="negative">Wirus</option>
                         <option value="FAKE_NEWS" className="negative">Fake News</option>
