@@ -2,7 +2,7 @@ import axios from "axios";
 import authHeader from "./Authentication/auth-header"
 
 const API_URL = "http://localhost:8080/";
-
+const token = localStorage.getItem('token');
 // POST
 
 const link = (linkName, deliveryDate) => {
@@ -24,6 +24,21 @@ const newComment = (id, comment, date, opinion) => {
             opinion
         },{
             headers: authHeader()
+        })
+        .then((response) => {
+            return response.data;
+        });
+};
+
+const putFile = (file) => {
+    let data = new FormData();
+    data.append('file', file);
+    return axios
+        .put(API_URL + `files/upload`, data,
+        {
+            headers:{ 'content-type': 'multipart/form-data',
+                        Authorization: 'Bearer ' + token
+                    }
         })
         .then((response) => {
             return response.data;
@@ -98,6 +113,7 @@ const api = {
     putConfirmProfile,
     putLike,
     putDisLike,
+    putFile,
     deleteComment
 };
   

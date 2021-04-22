@@ -13,6 +13,7 @@ import {Link} from 'react-router-dom';
 function UserPage(props) {
 
     const [user, setUser] = useState();
+    const [selectedFile, setSelectedFile] = useState();
     const [isCurrentUser, setIsCurrentUser] = useState(false);
     const [comments, setComments] = useState([]);
     const [commentsItems, setCommentsItems] = useState([]);
@@ -53,6 +54,12 @@ function UserPage(props) {
                 </div>
     }
 
+    const handlerImage = (event) => {
+        console.log(event.target.files[0]);
+        setSelectedFile(event.target.files[0]);
+        api.putFile(event.target.files[0]).then((res)=> console.log(res))
+    }
+
     const changeOpinion = (opinion) => {
         switch (opinion) {
             case 'VIRUS':
@@ -82,10 +89,10 @@ function UserPage(props) {
                 <div className="user-info">
                     {isCurrentUser ?
                         <div className="user-photo"> 
-                                <input type="file" id="icon-button-file"/>
+                                <input accept="image/*" type="file" id="icon-button-file" onChange={handlerImage}/>
                                 <Tooltip TransitionComponent={Zoom} title="Zmień zdjęcie">
                                     <label htmlFor="icon-button-file">
-                                        <img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/>
+                                        <img src={selectedFile || user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/>
                                     </label>
                                 </Tooltip>  
                         </div>
@@ -97,7 +104,7 @@ function UserPage(props) {
                     <div className="user-statistics">
                         <p>Username:</p> <p>{user && user.username}</p>
                         <p>Email:</p> <p>{user && user.email}</p>
-                        <p>Ilość komentarzy:</p> <p>{user && user.comments.length}</p>
+                        <p>Ilość komentarzy:</p> <p>{user && user.comments && user.comments.length || '0'}</p>
                         <p>Data dołączenia:</p> <p>{moment(user && user.creationDate).format('DD.MM.YYYY')}</p>
                     </div>
                 </div>
