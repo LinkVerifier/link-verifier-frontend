@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Formik, Form, Field, ErrorMessage} from 'formik';
 import './ChangePassword.scss';
 import { UserInfoContext } from '../../../context/UserInfoContext';
+import api from '../../../util/api';
 
 const validateChangePassword = (values) => {
     const errors = {};
@@ -40,8 +41,13 @@ function ChangePassword(props) {
         setUser(props.user);
     }, [props]);
 
-    const handleChangePassword = () => {
-
+    const handleChangePassword = (values) => {
+        api.putChangePassword(values.oldPassword, values.newPassword, values.newPasswordConfirm).then(
+            (res)=>{
+                console.log(res);
+                handleCancel();
+            }
+        )
     }
 
     return (

@@ -98,9 +98,24 @@ const putFile = (file) => {
 };
 
 const putUsername = (username) => {
+    console.log(username);
     return axios
-        .put(API_URL + ``,{
+        .put(API_URL + `users/change_username`,{
             username
+        },{
+            headers: authHeader()
+        })
+        .then((response) => {
+            return response.data;
+        });
+};
+
+const putChangePassword = (oldPassword, newPassword, newRepeatedPassword) => {
+    return axios
+        .put(API_URL + `users/change_password`,{
+            oldPassword,
+            newPassword,
+            newRepeatedPassword
         },{
             headers: authHeader()
         })
@@ -126,6 +141,8 @@ const api = {
     putLike,
     putDisLike,
     putFile,
+    putUsername,
+    putChangePassword,
     deleteComment
 };
   

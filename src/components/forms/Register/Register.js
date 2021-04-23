@@ -1,5 +1,5 @@
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { isEmail } from "validator";
 import { Formik, Form, Field, ErrorMessage} from 'formik';
 import AuthService from "../../../util/Authentication/auth-service";
@@ -31,9 +31,11 @@ const validateRegister = (values) => {
 
 function Register(props) {
 
+    const [loading, setLoading] = useState(false);
     const { switchToSignIn } = useContext(AccountBoxContext);
 
     const handleRegister = (values) => {
+        setLoading(true);
         AuthService.register(values.username, values.email, values.password, Date.now()).then(
             () => {
                 switchToSignIn();
@@ -55,7 +57,11 @@ function Register(props) {
                     <ErrorMessage name="email" component="div" className="alert"/>
                     <Field className="form-control" name="password" type="password" placeholder="Password"/>
                     <ErrorMessage name="password" component="div" className="alert"/>
-                    <button className="btn" type="submit">Zarejestruj</button>
+                    <button className="btn" type="submit">
+                        {loading && (
+                            <span className="spinner-border spinner-border-sm"></span>
+                        )}
+                        <span>Zarejestruj</span></button>
                 </Form>
             </Formik>
             <div className="switch-windows">

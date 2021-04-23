@@ -42,6 +42,8 @@ function EditProfile(props) {
                     handleCancel();
                 }
             )
+        }else{
+            handleCancel();
         }
     }
     const handleImage = async (e, formProps) =>{
