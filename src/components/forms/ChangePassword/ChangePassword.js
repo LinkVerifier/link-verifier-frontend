@@ -22,7 +22,7 @@ function ChangePassword(props) {
     return (
         <div className="editProfile-container">
             <div className="user-photo"> 
-                <img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/>
+                <img src={user && `data:image/jpeg;base64,${user.profilePicture.data}`} alt="Profile Picture" height='220px' width='220px'/>
             </div>
             <Formik
                 initialValues={{oldPassword: "", newPassword: "", newPasswordConfirm: "" }}

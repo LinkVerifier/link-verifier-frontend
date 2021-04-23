@@ -26,7 +26,7 @@ function EditProfile(props) {
                 {/* <input accept="image/*" type="file" id="icon-button-file" onChange={handlerImage}/> */}
                 <Tooltip TransitionComponent={Zoom} title="Zmień zdjęcie">
                     <label htmlFor="icon-button-file">
-                        <img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/>
+                        <img src={user && `data:image/jpeg;base64,${user.profilePicture.data}`} alt="Profile Picture" height='220px' width='220px'/>
                     </label>
                 </Tooltip>
             </div>

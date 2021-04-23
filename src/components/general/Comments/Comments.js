@@ -69,7 +69,7 @@ function Comments(props) {
             return  <div className="comment">
                         <Link to={'/users/'+user.id}>
                             <div className="user-photo">
-                                <img src={user.profilePicture} alt="Profile Picture" height='100px' width='100px'/>
+                                <img src={user && `data:image/jpeg;base64,${user.profilePicture.data}`} alt="Profile Picture" height='100px' width='100px'/>
                             </div>
                         </Link>
                         <div className="info">

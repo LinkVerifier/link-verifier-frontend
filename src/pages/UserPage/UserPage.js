@@ -31,6 +31,7 @@ function UserPage(props) {
         })
         api.getUserById(props.match.params.id).then((res)=> {
             setUser(res);
+            console.log(res.profilePicture);
             setComments(res.comments);
         });
     }, [props]);
@@ -119,7 +120,7 @@ function UserPage(props) {
                     :
                         <div className="user-info">
                             <div className="user-photo">
-                                <img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/>
+                                <img src={user && `data:image/jpeg;base64,${user.profilePicture.data}`} alt="Profile Picture" height='220px' width='220px'/>
                             </div>
                             <div className="user-statistics">
                                 <p>Username:</p> <p>{user && user.username}</p>
