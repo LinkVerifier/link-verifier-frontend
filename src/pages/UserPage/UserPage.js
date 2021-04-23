@@ -18,7 +18,7 @@ import { UserInfoContext } from '../../context/UserInfoContext';
 function UserPage(props) {
 
     const [user, setUser] = useState();
-    const [selectedFile, setSelectedFile] = useState();
+    const [image, setImage] = useState();
     const [isCurrentUser, setIsCurrentUser] = useState(false);
     const [comments, setComments] = useState([]);
     const [commentsItems, setCommentsItems] = useState([]);
@@ -31,6 +31,7 @@ function UserPage(props) {
         })
         api.getUserById(props.match.params.id).then((res)=> {
             setUser(res);
+            setImage(`data:`+res.profilePicture.type+`;base64,`+res.profilePicture.data)
             console.log(res.profilePicture);
             setComments(res.comments);
         });
@@ -60,12 +61,6 @@ function UserPage(props) {
                     </div>
                     {changeOpinion(comment.opinion.name)}
                 </div>
-    }
-
-    const handlerImage = (event) => {
-        console.log(event.target.files[0]);
-        setSelectedFile(event.target.files[0]);
-        api.putFile(event.target.files[0]).then((res)=> console.log(res))
     }
 
     const changeOpinion = (opinion) => {
@@ -99,6 +94,11 @@ function UserPage(props) {
     const handleCancel = () => {
         setIsEditProfileActive(false);
         setIsChangePasswordActive(false);
+        api.getUserById(props.match.params.id).then((res)=> {
+            // console.log(res);
+            setUser(res);
+            setImage(`data:`+res.profilePicture.type+`;base64,`+res.profilePicture.data);
+        });
     }
 
     const contextValue = { handleCancel };
@@ -120,7 +120,7 @@ function UserPage(props) {
                     :
                         <div className="user-info">
                             <div className="user-photo">
-                                <img src={user && `data:image/jpeg;base64,${user.profilePicture.data}`} alt="Profile Picture" height='220px' width='220px'/>
+                                <img src={image && image} alt="Profile Picture" height='220px' width='220px'/>
                             </div>
                             <div className="user-statistics">
                                 <p>Username:</p> <p>{user && user.username}</p>

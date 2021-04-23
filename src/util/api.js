@@ -30,21 +30,6 @@ const newComment = (id, comment, date, opinion) => {
         });
 };
 
-const putFile = (file) => {
-    let data = new FormData();
-    data.append('file', file);
-    return axios
-        .put(API_URL + `files/upload`, data,
-        {
-            headers:{ 'content-type': 'multipart/form-data',
-                        Authorization: 'Bearer ' + token
-                    }
-        })
-        .then((response) => {
-            return response.data;
-        });
-};
-
 // GET
 
 const getLinkById = (id) => {
@@ -66,8 +51,6 @@ const getUserById = (id) => {
 // PUT
 
 const putConfirmProfile = (userId, token) => {
-    console.log(userId);
-    console.log(token);
     return axios
         .put(API_URL + `auth/signup/confirm?userId=${userId}&token=${token}`)
         .then((response) => {
@@ -98,6 +81,35 @@ const putDisLike = (id) => {
             return response.data;
         });
 };
+
+const putFile = (file) => {
+    let data = new FormData();
+    data.append('file', file);
+    return axios
+        .put(API_URL + `files/upload`, data,
+        {
+            headers:{ 'content-type': 'multipart/form-data',
+                        Authorization: 'Bearer ' + token
+                    }
+        })
+        .then((response) => {
+            return response.data;
+        });
+};
+
+const putUsername = (username) => {
+    return axios
+        .put(API_URL + ``,{
+            username
+        },{
+            headers: authHeader()
+        })
+        .then((response) => {
+            return response.data;
+        });
+};
+
+// DELETE
 
 const deleteComment = (id) => {
     return axios.delete(API_URL + `comments/${id}`, {
