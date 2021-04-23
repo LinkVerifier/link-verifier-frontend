@@ -81,8 +81,8 @@
             }
         }
         .input-container{
-            // height: 2.5rem;
-            padding-left: 0.5rem;
+            height: 3rem;
+            padding-left: 1rem;
             display: flex;
             flex-direction: row;
             // border: 1px solid black;
@@ -101,7 +101,7 @@
     
             button{
                 border: none;
-                width: 2.5rem; height: 2.5rem;
+                width: 3rem; height: 3rem;
                 background-color: black;
                 border: none;
                 border-radius: 35px;
