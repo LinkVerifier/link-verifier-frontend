@@ -9,6 +9,11 @@ import moment from 'moment'
 import './UserPage.scss';
 import api from '../../util/api';
 import {Link} from 'react-router-dom';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
+import EditProfile from '../../components/forms/EditProfile/EditProfile';
+import ChangePassword from '../../components/forms/ChangePassword/ChangePassword';
+import { UserInfoContext } from '../../context/UserInfoContext';
 
 function UserPage(props) {
 
@@ -17,6 +22,8 @@ function UserPage(props) {
     const [isCurrentUser, setIsCurrentUser] = useState(false);
     const [comments, setComments] = useState([]);
     const [commentsItems, setCommentsItems] = useState([]);
+    const [isEditProfileActive, setIsEditProfileActive] = useState(false);
+    const [isChangePasswordActive, setIsChangePasswordActive] = useState(false);
 
     useEffect(() => {
         authService.getCurrentUser().then((res)=>{
@@ -81,51 +88,64 @@ function UserPage(props) {
         }
     }
 
+    const changePassword = () => {
+        setIsChangePasswordActive(true);
+    }
+    const editProfile = () => {
+        setIsEditProfileActive(true);
+    }
+
+    const handleCancel = () => {
+        setIsEditProfileActive(false);
+        setIsChangePasswordActive(false);
+    }
+
+    const contextValue = { handleCancel };
+
     return (
-        <div className="profile-container">
-            <Header />
-            <div className="profile-header" />
-            <div className="profile-info" >
-                <div className="user-info">
-                    {isCurrentUser ?
-                        <div className="user-photo"> 
-                                <input accept="image/*" type="file" id="icon-button-file" onChange={handlerImage}/>
-                                <Tooltip TransitionComponent={Zoom} title="Zmień zdjęcie">
-                                    <label htmlFor="icon-button-file">
-                                        <img src={selectedFile || user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/>
-                                    </label>
-                                </Tooltip>  
+        <UserInfoContext.Provider value={contextValue}>
+            <div className="profile-container">
+                <Header />
+                <div className="profile-header" />
+                <div className="profile-info" >
+                    {isEditProfileActive || isChangePasswordActive ? 
+                        <div className="user-info">
+                            {isEditProfileActive ?
+                                <EditProfile user={user}/>
+                            :
+                                <ChangePassword user={user}/>
+                            }
                         </div>
-                    : 
-                        <div className="user-photo"> 
-                            <img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/>
+                    :
+                        <div className="user-info">
+                            <div className="user-photo">
+                                <img src={user && user.profilePicture} alt="Profile Picture" height='220px' width='220px'/>
+                            </div>
+                            <div className="user-statistics">
+                                <p>Username:</p> <p>{user && user.username}</p>
+                                <p>Email:</p> <p>{user && user.email}</p>
+                                <p>Ilość komentarzy:</p> <p>{user && user.comments && user.comments.length || '0'}</p>
+                                <p>Data dołączenia:</p> <p>{moment(user && user.creationDate).format('DD.MM.YYYY')}</p>
+                            </div>
+                            {isCurrentUser && 
+                                <ButtonGroup disableElevation variant="contained" color="inherit">
+                                    <Button onClick={changePassword}>Zmień hasło</Button>
+                                    <Button onClick={editProfile}>Edytuj Profil</Button>
+                                </ButtonGroup>
+                            }
                         </div>
                     }
-                    <div className="user-statistics">
-                        <p>Username:</p> <p>{user && user.username}</p>
-                        <p>Email:</p> <p>{user && user.email}</p>
-                        <p>Ilość komentarzy:</p> <p>{user && user.comments && user.comments.length || '0'}</p>
-                        <p>Data dołączenia:</p> <p>{moment(user && user.creationDate).format('DD.MM.YYYY')}</p>
-                    </div>
-                </div>
-                <div className="right-container">
-                    {isCurrentUser ?
-                        <div className="user-name">
-                            <Tooltip TransitionComponent={Zoom} title="Zmień nick">
-                                <div>{user && user.username}</div>
-                            </Tooltip>
-                        </div>
-                    :   
+                    <div className="right-container">
                         <div className="user-name">{user && user.username}</div>
-                    }
-                    <p>Komentarze</p>
-                    <div className="user-comments">
-                        {commentsItems}
+                        <p>Komentarze</p>
+                        <div className="user-comments">
+                            {commentsItems}
+                        </div>
                     </div>
                 </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
+        </UserInfoContext.Provider>
     );
 }
 

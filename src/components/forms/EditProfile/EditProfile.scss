@@ -1,0 +1,16 @@
+
+.editProfile-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    form{
+        margin-top: 2rem;
+        .input-image{
+            display: none;
+        }
+        .form-control{
+            margin-bottom: 1rem;
+        }
+    }
+}
