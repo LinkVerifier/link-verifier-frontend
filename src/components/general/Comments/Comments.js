@@ -11,6 +11,7 @@ import {Link, withRouter} from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import authService from '../../../util/Authentication/auth-service';
+import { CommentsContext } from '../../../context/CommentsContext';
 
 function Comments(props) {
 
@@ -131,10 +132,10 @@ function Comments(props) {
     }
 
     return (
-        <div>
-            <h3>Komentarze</h3>
-            <div className="comments-container">{commentsItems}</div>
-        </div>
+            <div>
+                <h3>Komentarze</h3>
+                <div className="comments-container">{commentsItems}</div>
+            </div>
     );
 };
 

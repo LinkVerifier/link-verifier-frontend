@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useContext, useEffect } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage} from 'formik';
 import './NewComment.scss';
@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
+import { CommentsContext } from '../../../context/CommentsContext';
 
 const validateComment = (values) => {
     const errors = {};
@@ -22,6 +23,7 @@ const validateComment = (values) => {
 function NewComment(props) {
 
     const [isUser, setIsUser] = useState(false);
+    const { handleComments } = useContext(CommentsContext);
 
     useEffect(()=>{
         if(localStorage.getItem('token')!==null){
@@ -34,7 +36,8 @@ function NewComment(props) {
             props.history.push('/login');
         }else{
             api.newComment(props.id, values.content,Date.now(), values.opinion).then(
-                window.location.reload()
+                handleComments
+                // window.location.reload()
             );
         }
     }
