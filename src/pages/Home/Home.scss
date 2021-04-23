@@ -1,9 +1,157 @@
 @import "../../assets/styles/colors";
 
+@keyframes animate1
+{
+    0%
+    {
+        background-position-x: 0;
+    }
+    100%
+    {
+        background-position-x: 1000px;
+    }
+}
+@keyframes animate2
+{
+    0%
+    {
+        background-position-x: 0;
+    }
+    100%
+    {
+        background-position-x: -1000px;
+    }
+}
 .home-container{
     width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    .home-header{
+        position: relative;
+        width: 100%;
+        height: 50vh;
+        background: linear-gradient(
+            58deg,
+            $yellow-primary-light 20%,
+            $yellow-primary-dark 100%
+            );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        .top-header{
+            width: 100%;
+            max-width: 1500px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            .menu-button{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                margin:0;
+                margin-right: 2rem;
+                a{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-decoration: none;
+                    color: black;
+                    padding-left: 1rem;
+                }
+                svg{
+                    color:black;
+                }
+            }
+            a{
+                margin-left: 2rem;
+                text-decoration: none;
+                #logo{
+                    h3{
+                        span{
+                            color: black;
+                        }
+                    }
+                }
+            }
+        }
+        .input-container{
+            // height: 2.5rem;
+            padding-left: 0.5rem;
+            display: flex;
+            flex-direction: row;
+            // border: 1px solid black;
+            border-radius: 34px;
+            align-items: center;
+            background-color: white;
+            margin-top: 6rem;
+    
+            input{
+                width: 30vw;
+                border: none;
+                height: 2rem;
+                font-size: 1rem;
+                outline: none;
+            }
+    
+            button{
+                border: none;
+                width: 2.5rem; height: 2.5rem;
+                background-color: black;
+                border: none;
+                border-radius: 35px;
+                padding: 0.6rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                outline: none;
+                svg{
+                    color: $yellow-primary-light;
+                    width: 100%;
+                }
+            }
+        }
+        .wave{
+            position: absolute;
+            z-index: 900;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            background: url(../../assets/images/wave.png);
+            background-size: 1000px 100px;
+            &.wave1{
+                animation: animate1 30s linear infinite;
+                z-index: 800;
+                opacity: 1;
+                animation-delay: 0s;
+                bottom: 0;
+            }
+            &.wave2{
+                animation: animate2 15s linear infinite;
+                z-index: 899;
+                opacity: 0.5;
+                animation-delay: -5s;
+                bottom: 10px;
+            }
+            &.wave3{
+                animation: animate1 30s linear infinite;
+                z-index: 898;
+                opacity: 0.2;
+                animation-delay: -2s;
+                bottom: 15px;
+            }
+            &.wave4{
+                animation: animate2 15s linear infinite;
+                z-index: 897a;
+                opacity: 0.7;
+                animation-delay: -5s;
+                bottom: 20px;
+            }
+        }
+    }
 }

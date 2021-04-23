@@ -3,6 +3,10 @@
 a{
     text-decoration: none;
     #logo {
+        h3{
+            margin: 0;
+        }
+        // max-height: 20vh;
         display: block;
         position: relative;
         // bottom: 0;

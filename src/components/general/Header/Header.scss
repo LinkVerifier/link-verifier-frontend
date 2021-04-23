@@ -2,6 +2,7 @@
 
 
 .header-container{
+    z-index: 1000;
     width: 100%;
     // max-width: 1000px;
     background-color: white;
@@ -11,30 +12,6 @@
     align-items: center;
     a{
         text-decoration: none;
-    }
-    #logo {
-        display: block;
-        position: relative;
-        margin: 0;
-        // margin-right: 3em;
-        z-index: 1;
-        width: 20vw;
-        h3{
-            margin: 0;
-            span {
-                color: $yellow-primary-light;
-                font-size: 1em;
-                .logo {
-                    fill: black;
-                    width: 2em;
-                    height: auto;
-                    margin: 10px;
-                }
-            }
-            span:nth-child(2){
-                color: black;
-            }
-        }
     }
     .menu-button{
         width: 20vw;

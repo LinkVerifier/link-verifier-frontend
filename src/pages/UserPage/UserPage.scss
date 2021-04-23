@@ -115,6 +115,15 @@
                             }
                         }
                     }
+                    .rightSide-comment{
+                        display: flex;
+                        flex-direction: column;
+                        button{
+                            position: relative;
+                            top: -0.5rem;
+                            align-self: flex-end;
+                        }
+                    }
                     .opinion{
                         display: flex;
                         align-items: center;

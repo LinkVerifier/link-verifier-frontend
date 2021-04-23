@@ -14,6 +14,8 @@ import Button from '@material-ui/core/Button';
 import EditProfile from '../../components/forms/EditProfile/EditProfile';
 import ChangePassword from '../../components/forms/ChangePassword/ChangePassword';
 import { UserInfoContext } from '../../context/UserInfoContext';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 function UserPage(props) {
 
@@ -59,7 +61,12 @@ function UserPage(props) {
                             </div>
                         </div>
                     </div>
-                    {changeOpinion(comment.opinion.name)}
+                    <div className="rightSide-comment">
+                        <IconButton aria-label="delete" size="small" onClick={() => deleteComment(comment.id)}>
+                                        <DeleteIcon />
+                        </IconButton>
+                        {changeOpinion(comment.opinion.name)}
+                    </div>
                 </div>
     }
 
@@ -89,6 +96,13 @@ function UserPage(props) {
     }
     const editProfile = () => {
         setIsEditProfileActive(true);
+    }
+
+    const deleteComment = (id) =>{
+        api.deleteComment(id).then(
+            (res) =>{
+                window.location.reload();
+            })
     }
 
     const handleCancel = () => {

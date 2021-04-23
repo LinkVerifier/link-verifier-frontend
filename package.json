@@ -21,6 +21,7 @@
     "moment-timezone": "^0.5.33",
     "node-sass": "^5.0.0",
     "query-string": "^7.0.0",
+    "raf": "^3.4.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-facebook-login": "^4.1.1",
