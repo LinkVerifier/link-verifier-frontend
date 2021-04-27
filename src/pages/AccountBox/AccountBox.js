@@ -75,7 +75,7 @@ function AccountBox(props) {
                             variants={variants}
                             transition={expandingTransition}>
                         </motion.div>
-                        <div className="header-container">
+                        <div className="info-container">
                             {active === "singin" && 
                                 <div>
                                     <h2>Witaj ponownie</h2>

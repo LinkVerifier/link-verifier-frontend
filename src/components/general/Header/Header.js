@@ -35,6 +35,7 @@ function Header(props) {
     }
 
     const submitSearch = (e) =>{
+        e.preventDefault();
         api.link(link, Date.now()).then(
             (res) => {
                 props.history.push(`/links/${res}`);

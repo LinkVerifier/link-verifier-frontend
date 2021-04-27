@@ -37,7 +37,6 @@ function UserPage(props) {
                     `;base64,` +
                     res.profilePicture.data
             );
-            console.log(res.profilePicture);
             setComments(res.comments);
         });
     }, [props]);
@@ -55,7 +54,10 @@ function UserPage(props) {
     }, [comments]);
 
     const addComment = async (comment) => {
-        const link = await api.getLinkById(comment.linkId);
+        if(comment===null){
+            return 
+        }
+        const link = await api.getLinkById( comment.linkId);
         return (
             <div key={comment.id} className="comment">
                 <div className="info">

@@ -11,6 +11,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
 import authService from '../../util/Authentication/auth-service';
 
 
@@ -18,12 +21,14 @@ function Home(props) {
     const [link, setLink] = useState("");
     const [isLogged, setIsLogged] = useState(false);
     const [user, setUser] = useState();
+    const [statistics, setStatistics] = useState();
 
     useEffect(() => {
         if(localStorage.getItem('token') !== null){
             setIsLogged(true);
             authService.getCurrentUser().then((res)=>setUser(res))
         }
+        api.getStatistics().then((res) => setStatistics(res));
     },[]);
 
     const logout = () =>{
@@ -37,6 +42,7 @@ function Home(props) {
     }
 
     const submitSearch = (e) =>{
+        e.preventDefault();
         api.link(link, Date.now()).then(
             (res) => {
                 props.history.push(`/links/${res}`);
@@ -88,6 +94,23 @@ function Home(props) {
                 <div className="wave wave2"></div>
                 <div className="wave wave3"></div>
                 <div className="wave wave4"></div>
+            </div>
+            <div className="circles-container">
+                <div className="circle circle1">
+                    <FontAwesomeIcon icon={faUsers} size="4x"/>
+                    <span>Liczba użytkowników</span>
+                    <span className="count">{statistics && statistics.users}</span>
+                </div>
+                <div className="circle circle2">
+                    <FontAwesomeIcon icon={faLink} size="4x"/>
+                    <span>Liczba linków</span>
+                    <span className="count">{statistics && statistics.links}</span>
+                </div>
+                <div className="circle circle3">
+                    <FontAwesomeIcon icon={faComment} size="4x"/>
+                    <span>Liczba komentarzy</span>
+                    <span className="count">{statistics && statistics.comments}</span>
+                </div>
             </div>
             <Footer />
         </div>

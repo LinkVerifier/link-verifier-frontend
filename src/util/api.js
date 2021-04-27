@@ -48,6 +48,14 @@ const getUserById = (id) => {
         });
 };
 
+const getStatistics = () => {
+    return axios
+        .get(API_URL + `statistics`)
+        .then((response) => {
+            return response.data;
+        });
+};
+
 // PUT
 
 const putConfirmProfile = (userId, token) => {
@@ -135,6 +143,7 @@ const deleteComment = (id) => {
 const api = {
     link,
     newComment,
+    getStatistics,
     getLinkById,
     getUserById,
     putConfirmProfile,
