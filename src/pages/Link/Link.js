@@ -6,6 +6,7 @@ import './Link.scss';
 import Comments from '../../components/general/Comments/Comments';
 import NewComment from '../../components/forms/NewComment/NewComment';
 import Footer from '../../components/general/Footer/Footer';
+import ScrollInNav from "../../components/general/ScrollinNav/ScrollInNav";
 import { CommentsContext } from '../../context/CommentsContext';
 
 function Link(props) {
@@ -35,7 +36,10 @@ function Link(props) {
     return (
         <CommentsContext.Provider value={contextValue}>
             <div className="link-container">
-                <Header/>
+                <Header />
+                <ScrollInNav scrollInHeight={50}>
+                    <Header />
+                </ScrollInNav>
                 <div className="link-name">
                     <span>Link: {link.linkName}</span>
                 </div>

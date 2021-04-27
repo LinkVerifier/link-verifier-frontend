@@ -64,8 +64,8 @@ export default class ScrollInNav extends Component {
 
   update = () => {
     let currentScrollY = this.getScrollY();
-    console.log(currentScrollY);
-    console.log(this.props.scrollInHeight);
+    // console.log(currentScrollY);
+    // console.log(this.props.scrollInHeight);
 
     this.setState({
       hidden: currentScrollY < this.props.scrollInHeight
@@ -89,7 +89,7 @@ export default class ScrollInNav extends Component {
         {...renderStyle, ...this.scrolledInStyle};
 
     return (
-        <div className="scroll-in-nav" ref="scrollnav" style={renderStyle}>
+        <div className="scroll-in-nav" style={renderStyle}>
           {this.props.children}
         </div>
     );

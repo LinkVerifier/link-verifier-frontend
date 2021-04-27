@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import api from '../../../util/api';
 import './Comments.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +17,7 @@ function Comments(props) {
 
     const [comments, setComments] = useState([]);
     const [commentsItems, setCommentsItems] = useState([]);
+    const { handleComments } = useContext(CommentsContext);
     // const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {
@@ -55,10 +56,7 @@ function Comments(props) {
     };
 
     const deleteComment = (id) =>{
-        api.deleteComment(id).then(
-            (res) =>{
-                window.location.reload();
-            })
+        api.deleteComment(id).then(handleComments)
     }
 
     const addComment = async (comment) => {
@@ -66,7 +64,7 @@ function Comments(props) {
             const user = await api.getUserById(comment.userId);
             const currentUser = await authService.getCurrentUser();
 
-            return  <div className="comment">
+            return  <div key={comment.id} className="comment">
                         <Link to={'/users/'+user.id}>
                             <div className="user-photo">
                                 <img src={user && `data:image/jpeg;base64,${user.profilePicture.data}`} alt="Profile Picture" height='100px' width='100px'/>

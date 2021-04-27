@@ -59,7 +59,7 @@ function Header(props) {
             </form>
             {isLogged ?
                 <div className="menu-button">
-                    <Link to={user && '/users/'+user.id || '/'}>
+                    <Link to={(user && '/users/'+user.id) || '/'}>
                         <FontAwesomeIcon icon={faUser} size="lg"/>
                         <span>Mój profil</span>
                     </Link>

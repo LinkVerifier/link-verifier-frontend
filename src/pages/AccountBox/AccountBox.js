@@ -6,7 +6,7 @@ import { AccountBoxContext } from '../../context/AccountBoxContext';
 import astronauta from '../../assets/images/astronauta.png';
 import planeta from '../../assets/images/planeta.png';
 import gwiazdeczka from '../../assets/images/gwiazdeczka.png'; 
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Logo from '../../components/general/Logo/Logo'
 
 import './AccountBox.scss';

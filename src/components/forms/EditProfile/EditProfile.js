@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import { Tooltip, Zoom } from '@material-ui/core';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
-import { Formik, Form, Field, ErrorMessage} from 'formik';
+import { Formik, Form, Field} from 'formik';
 import './EditProfile.scss';
 import { UserInfoContext } from '../../../context/UserInfoContext';
 import api from '../../../util/api';
@@ -76,7 +76,7 @@ function EditProfile(props) {
                 {/* <input accept="image/*" type="file" id="icon-button-file" onChange={handlerImage}/> */}
                 <Tooltip TransitionComponent={Zoom} title="Zmień zdjęcie">
                     <label htmlFor="icon-button-file">
-                        <img src={image && image} alt="Profile Picture" height='220px' width='220px'/>
+                        <img src={image && image} alt="Zdjęcie" height='220px' width='220px'/>
                     </label>
                 </Tooltip>
             </div>

@@ -3,11 +3,6 @@ import { withRouter, Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage} from 'formik';
 import './NewComment.scss';
 import api from '../../../util/api';
-import userEvent from '@testing-library/user-event';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import { CommentsContext } from '../../../context/CommentsContext';
 
 const validateComment = (values) => {

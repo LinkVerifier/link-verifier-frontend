@@ -56,6 +56,9 @@
                 grid-template-columns: 50% 50%;
                 column-gap: 1.5rem;
             }
+            button{
+                outline: none;
+            }
             
         }
         
@@ -122,6 +125,7 @@
                             position: relative;
                             top: -0.5rem;
                             align-self: flex-end;
+                            outline:none;
                         }
                     }
                     .opinion{

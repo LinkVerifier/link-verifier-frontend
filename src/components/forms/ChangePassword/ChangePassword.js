@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { Tooltip, Zoom } from '@material-ui/core';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import { Formik, Form, Field, ErrorMessage} from 'formik';
@@ -53,7 +52,7 @@ function ChangePassword(props) {
     return (
         <div className="changePassword-container">
             <div className="user-photo"> 
-                <img src={user && `data:image/jpeg;base64,${user.profilePicture.data}`} alt="Profile Picture" height='220px' width='220px'/>
+                <img src={user && `data:image/jpeg;base64,${user.profilePicture.data}`} alt="Zdjęcie" height='220px' width='220px'/>
             </div>
             <Formik
                 initialValues={{oldPassword: "", newPassword: "", newPasswordConfirm: "" }}
