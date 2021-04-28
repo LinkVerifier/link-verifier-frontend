@@ -19,7 +19,7 @@ function LinksStatistics(props) {
 
     useEffect(() => {
         setIsDangerousActive(true);
-        api.getDetailsLinks("new", 3).then((res) => {
+        api.getDetailsLinks("new", 5).then((res) => {
             setRecentLinks(
                 res.map((link) => (
                     <Link className="link" to={`/links/${link.id}`}>
@@ -32,7 +32,7 @@ function LinksStatistics(props) {
                 ))
             );
         });
-        api.getDetailsLinks("most_visited", 3).then((res) => {
+        api.getDetailsLinks("most_visited", 5).then((res) => {
             setMostVisitLinks(
                 res.map((link) => (
                     <Link className="link" to={`/links/${link.id}`}>
@@ -45,13 +45,16 @@ function LinksStatistics(props) {
                 ))
             );
         });
-        api.getDetailsLinks("most_dangerous", 3).then((res) => {
+        api.getDetailsLinks("most_dangerous", 5).then((res) => {
             console.log(res);
             setDangerousLinks(
                 res.map((link) => (
                     <Link className="link" to={`/links/${link.id}`}>
                         <p className="link-name">Link: {link.linkName}</p>
-                        <ProgressBar striped variant="danger" now={link.rating} label={`${link.rating}%`}/>
+                        <ProgressBar>
+                            <ProgressBar striped variant="danger" now={link.rating} label={`${link.rating}%`}/>
+                            <ProgressBar striped variant="success" now={100-link.rating}/>
+                        </ProgressBar>
                     </Link>
                 ))
             );

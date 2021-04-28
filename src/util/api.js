@@ -64,6 +64,14 @@ const getDetailsLinks = (search, to) => {
         });
 };
 
+const getRecentComments = (search, to) => {
+    return axios
+        .get(API_URL + `comments?search=${search}&to=${to}`)
+        .then((response) => {
+            return response.data;
+        });
+};
+
 // PUT
 
 const putConfirmProfile = (userId, token) => {
@@ -155,6 +163,7 @@ const api = {
     getLinkById,
     getUserById,
     getDetailsLinks,
+    getRecentComments,
     putConfirmProfile,
     putLike,
     putDisLike,

@@ -4,20 +4,22 @@
     margin-top: 5rem;
     .links-statistics{
         background-color: white;
-        border: 1px solid $frames-color;
         border-radius: 10px;
         overflow: hidden;
         min-height: 200px;
+        border: solid $frames-color;
 
         .nav-buttons{
             display: flex;
             flex-direction: row;
             background-color: $frames-color;
+            // border-color: red;
+            // overflow: hidden;
             button{
                 height: 5rem;
                 padding: 0 3rem;
-                border: none;
                 background-color: white;
+                border:none;
                 overflow: hidden;
                 background-color: $frames-color;
                 transition: background-color 1s;
@@ -29,10 +31,11 @@
             button:focus{
                 background-color: white;
             }
-
         }
 
         .statistics-content{
+            // border: 1px solid $frames-color;
+            // border-top: none;
             .content{
                 padding: 1rem 5rem;
                 .link{
@@ -42,6 +45,7 @@
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
+                    align-items: center;
                     &:focus{
                         background-color: $frames-color;
                     }
@@ -66,12 +70,6 @@
                         margin-left: 1rem;
                     }
                 }
-                // .link:focus{
-                //     background-color: $frames-color;
-                // }
-                // .link:hover{
-                //     background-color: $frames-color;
-                // }
             }
         }
     }

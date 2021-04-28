@@ -16,6 +16,7 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
 import authService from '../../util/Authentication/auth-service';
 import LinksStatistics from "../../components/general/LinksStatistics/LinksStatistics";
+import LastestComments from "../../components/general/LatestComments/LatestComments";
 
 
 function Home(props) {
@@ -114,13 +115,8 @@ function Home(props) {
                         <span className="count">{statistics && statistics.comments}</span>
                     </div>
                 </div>
-                <div className="latest-comments">
-                    <h3>Najnowsze komentarze</h3>
-                    <div className="latest-table">
-
-                    </div>
-                </div>
-                <LinksStatistics/>
+                <LastestComments />
+                <LinksStatistics />
             </div>
             <Footer />
         </div>
