@@ -15,6 +15,7 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
 import authService from '../../util/Authentication/auth-service';
+import LinksStatistics from "../../components/general/LinksStatistics/LinksStatistics";
 
 
 function Home(props) {
@@ -53,7 +54,7 @@ function Home(props) {
 
     return (
         <div className="home-container">
-            <ScrollInNav scrollInHeight={480}>
+            <ScrollInNav scrollInHeight={250}>
                 <Header />
             </ScrollInNav>
             <div className="home-header">
@@ -95,22 +96,31 @@ function Home(props) {
                 <div className="wave wave3"></div>
                 <div className="wave wave4"></div>
             </div>
-            <div className="circles-container">
-                <div className="circle circle1">
-                    <FontAwesomeIcon icon={faUsers} size="4x"/>
-                    <span>Liczba użytkowników</span>
-                    <span className="count">{statistics && statistics.users}</span>
+            <div className="home-content">
+                <div className="circles-container">
+                    <div className="circle circle1">
+                        <FontAwesomeIcon icon={faUsers} size="4x"/>
+                        <span>Liczba użytkowników</span>
+                        <span className="count">{statistics && statistics.users}</span>
+                    </div>
+                    <div className="circle circle2">
+                        <FontAwesomeIcon icon={faLink} size="4x"/>
+                        <span>Liczba linków</span>
+                        <span className="count">{statistics && statistics.links}</span>
+                    </div>
+                    <div className="circle circle3">
+                        <FontAwesomeIcon icon={faComment} size="4x"/>
+                        <span>Liczba komentarzy</span>
+                        <span className="count">{statistics && statistics.comments}</span>
+                    </div>
                 </div>
-                <div className="circle circle2">
-                    <FontAwesomeIcon icon={faLink} size="4x"/>
-                    <span>Liczba linków</span>
-                    <span className="count">{statistics && statistics.links}</span>
+                <div className="latest-comments">
+                    <h3>Najnowsze komentarze</h3>
+                    <div className="latest-table">
+
+                    </div>
                 </div>
-                <div className="circle circle3">
-                    <FontAwesomeIcon icon={faComment} size="4x"/>
-                    <span>Liczba komentarzy</span>
-                    <span className="count">{statistics && statistics.comments}</span>
-                </div>
+                <LinksStatistics/>
             </div>
             <Footer />
         </div>

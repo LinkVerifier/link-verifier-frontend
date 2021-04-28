@@ -27,6 +27,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: flex-start;
     .home-header{
         position: relative;
@@ -156,35 +157,63 @@
         }
     }
 
-    .circles-container{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding-top: 8rem;
-        // color:$yellow-primary-light;
-
-        .circle{
-            margin: 0 2rem;
-            height: 300px;
-            width: 300px;
-            border-radius: 150px;
+    .home-content{
+        max-width: 1000px;
+        margin-bottom: 5rem;
+        .circles-container{
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: center;
-            align-items: center;
-            // border: 1px solid $yellow-primary-light;
-            // background-color: white;
-            // background-color: #17cad0;
-            // svg{
-            //     padding: 40px;
-            //     width: 150px;
-            //     height: 150px;
-            //     border-radius: 75px;
-            //     background-color: $yellow-primary-light;
-            // }
-            .count{
-                padding-top: 2rem;
-                font-size: 30px;
+            padding-top: 6rem;
+            height: 55vh;
+            // color:$yellow-primary-light;
+    
+            .circle{
+                margin: 0 2rem;
+                height: 300px;
+                width: 300px;
+                border-radius: 150px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                // border: 1px solid $yellow-primary-light;
+                // background-color: white;
+                // background-color: #17cad0;
+                // svg{
+                //     padding: 40px;
+                //     width: 150px;
+                //     height: 150px;
+                //     border-radius: 75px;
+                //     background-color: $yellow-primary-light;
+                // }
+                .count{
+                    padding-top: 2rem;
+                    font-size: 30px;
+                }
+            }
+        }
+        
+        .latest-comments{
+            .latest-table{
+                margin-top: 2rem;
+                width: 100%;
+                min-height: 100px;
+                background-color: white;
+                border-radius: 10px;
+                border: 1px solid $frames-color;
+            }
+        }
+        
+        .statistics-details{
+            margin-top: 5rem;
+            .statistics-table{
+                margin-top: 2rem;
+                width: 100%;
+                min-height: 100px;
+                background-color: white;
+                border-radius: 10px;
+                border: 1px solid $frames-color;
             }
         }
     }

@@ -1,0 +1,78 @@
+@import "../../../assets/styles/colors";
+
+.statistics-container{
+    margin-top: 5rem;
+    .links-statistics{
+        background-color: white;
+        border: 1px solid $frames-color;
+        border-radius: 10px;
+        overflow: hidden;
+        min-height: 200px;
+
+        .nav-buttons{
+            display: flex;
+            flex-direction: row;
+            background-color: $frames-color;
+            button{
+                height: 5rem;
+                padding: 0 3rem;
+                border: none;
+                background-color: white;
+                overflow: hidden;
+                background-color: $frames-color;
+                transition: background-color 1s;
+                outline: none;
+            }
+            button:hover{
+                background-color: white;
+            }
+            button:focus{
+                background-color: white;
+            }
+
+        }
+
+        .statistics-content{
+            .content{
+                padding: 1rem 5rem;
+                .link{
+                    text-decoration: none;
+                    padding: 1rem 2rem;
+                    color: black;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    &:focus{
+                        background-color: $frames-color;
+                    }
+                    &:hover{
+                        background-color: $frames-color;
+                        .link-name{
+                            color: black;
+                        }
+                    }
+
+                    .link-name{
+                        position: static;
+                        padding: 0;
+                        margin: 0;
+                        color: $yellow-primary-dark;
+                    }
+                    .progress{
+                        width: 30%;
+                    }
+
+                    svg{
+                        margin-left: 1rem;
+                    }
+                }
+                // .link:focus{
+                //     background-color: $frames-color;
+                // }
+                // .link:hover{
+                //     background-color: $frames-color;
+                // }
+            }
+        }
+    }
+}

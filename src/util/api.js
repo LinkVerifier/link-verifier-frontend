@@ -56,6 +56,14 @@ const getStatistics = () => {
         });
 };
 
+const getDetailsLinks = (search, to) => {
+    return axios
+        .get(API_URL + `links?search=${search}&to=${to}`)
+        .then((response) => {
+            return response.data;
+        });
+};
+
 // PUT
 
 const putConfirmProfile = (userId, token) => {
@@ -146,6 +154,7 @@ const api = {
     getStatistics,
     getLinkById,
     getUserById,
+    getDetailsLinks,
     putConfirmProfile,
     putLike,
     putDisLike,
