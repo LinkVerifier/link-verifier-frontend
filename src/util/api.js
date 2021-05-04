@@ -156,6 +156,17 @@ const deleteComment = (id) => {
       });
 }
 
+// PATCH
+
+const patchLinkAddViews = (id) => {
+    return axios
+        .patch(API_URL + `links/${id}`)
+        .then((response) => {
+            return response.data;
+        });
+};
+
+
 const api = {
     link,
     newComment,
@@ -170,7 +181,8 @@ const api = {
     putFile,
     putUsername,
     putChangePassword,
-    deleteComment
+    deleteComment,
+    patchLinkAddViews
 };
   
 export default api;

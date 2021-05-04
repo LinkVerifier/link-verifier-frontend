@@ -49,7 +49,7 @@ function LinksStatistics(props) {
             console.log(res);
             setDangerousLinks(
                 res.map((link) => (
-                    <Link className="link" to={`/links/${link.id}`}>
+                    <Link className="link" key={link.id} to={`/links/${link.id}`}>
                         <p className="link-name">Link: {link.linkName}</p>
                         <ProgressBar>
                             <ProgressBar striped variant="danger" now={link.rating} label={`${link.rating}%`}/>

@@ -75,6 +75,10 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+
+            .alert{
+                color: red;
+            }
             
             Form {
                 display: flex;

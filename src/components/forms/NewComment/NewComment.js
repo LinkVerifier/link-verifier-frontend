@@ -32,7 +32,8 @@ function NewComment(props) {
         }else{
             api.newComment(props.id, values.content,Date.now(), values.opinion).then(
                 handleComments
-                // window.location.reload()
+            ).catch(
+                (err)=>console.log(err.response)
             );
         }
     }
