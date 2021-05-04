@@ -8,7 +8,7 @@ import { isEmail } from "validator";
 // import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import "./Login.scss";
 
-/*global FB*/
+ /*global FB*/
 
 const validateLogin = (values) => {
     const errors = {};
@@ -34,21 +34,6 @@ function Login(props) {
     const [facebookLoading, setFacebookLoading] = useState(false);
 
     const { switchToSignUp } = useContext(AccountBoxContext);
-
-    useEffect(() => {
-        initFacebookLogin();
-    }, []);
-
-    const initFacebookLogin = () => {
-        window.fbAsyncInit = function () {
-            FB.init({
-                appId: "857334021514094",
-                autoLogAppEvents: true,
-                xfbml: true,
-                version: "v7.0",
-            });
-        };
-    };
 
     const handleLogin = (values, { setFieldError }) => {
         setLoading(true);
