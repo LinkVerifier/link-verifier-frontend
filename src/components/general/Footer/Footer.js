@@ -12,7 +12,7 @@ function Footer(props) {
                     <FontAwesomeIcon icon={faHeart} color='red'/>
                     &nbsp;by
                 </span>
-                Julia Kozłowska, Mateusz Niewiadomski, Kamil Olszewski
+                <span>Julia Kozłowska, Mateusz Niewiadomski, Kamil Olszewski</span>
             </div>
             <span>©&nbsp;2021</span>
         </div>

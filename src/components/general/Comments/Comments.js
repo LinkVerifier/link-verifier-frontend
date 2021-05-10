@@ -61,7 +61,7 @@ function Comments(props) {
 
     const addComment = async (comment) => {
         if(comment!==null){
-            const user = await api.getUserById(comment.userId);
+            const user = await api.getUserByCommentId(comment.id);
             const currentUser = await authService.getCurrentUser();
 
             return  <div key={comment.id} className="comment">

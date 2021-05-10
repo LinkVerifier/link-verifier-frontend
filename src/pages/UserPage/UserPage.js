@@ -57,7 +57,7 @@ function UserPage(props) {
         if(comment===null){
             return 
         }
-        const link = await api.getLinkById( comment.linkId);
+        const link = await api.getLinkByCommentId(comment.id);
         return (
             <div key={comment.id} className="comment">
                 <div className="info">

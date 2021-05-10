@@ -36,7 +36,7 @@ function Register(props) {
     const [message, setMessage] = useState("");
     const { switchToSignIn } = useContext(AccountBoxContext);
 
-    const handleRegister = (values, { setFieldError, resetForm }) => {
+    const handleRegister = (values) => {
         console.log(values);
         // console.log(errors);
         setLoading(true);
@@ -51,7 +51,6 @@ function Register(props) {
             .catch((error) => {
                 setLoading(false);
                 setMessage(error.response.data.infoMessage);
-                // setFieldError("email", error.response.data.infoMessage);
             });
     };
 

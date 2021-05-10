@@ -3,8 +3,9 @@
 .latest-comments{
     .latest-table{
         .comment{
+            width: 100%;
             padding: 1rem;
-            border: 1px solid $frames-color;
+            border: 0.5px solid $frames-color;
             border-radius: 10px;
             background-color: white;
             margin-bottom: 0.2rem;
@@ -16,7 +17,7 @@
                 border-radius: 50%;
                 overflow: hidden;
                 margin-right: 1rem;
-                border: 1px solid $frames-color;
+                border: 0px solid $frames-color;
             }
             .info{
                 width: 70%;

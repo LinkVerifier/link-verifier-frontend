@@ -40,9 +40,26 @@ const getLinkById = (id) => {
         });
 };
 
+const getLinkByCommentId = (id) => {
+    return axios
+        .get(API_URL + `links/?commentId=${id}`)
+        .then((response) => {
+            return response.data;
+        });
+};
+
+
 const getUserById = (id) => {
     return axios
         .get(API_URL + `users/${id}`)
+        .then((response) => {
+            return response.data;
+        });
+};
+
+const getUserByCommentId = (id) => {
+    return axios
+        .get(API_URL + `users/?commentId=${id}`)
         .then((response) => {
             return response.data;
         });
@@ -173,6 +190,7 @@ const api = {
     getStatistics,
     getLinkById,
     getUserById,
+    getUserByCommentId,
     getDetailsLinks,
     getRecentComments,
     putConfirmProfile,

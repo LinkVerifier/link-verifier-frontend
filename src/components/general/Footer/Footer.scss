@@ -1,24 +1,27 @@
 @import "../../../assets/styles/colors";
 
-.footer-container{
-    margin-top: auto;
-    position: relative;
-    width: 100%;
-    height: 100px;
-    border-top: solid 0.1px $frames-color;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    justify-self: flex-end;
-    // align-self: flex-end;
-    .made-with{
+
+@media (min-width:1024px){
+    .footer-container {
+        margin-top: auto;
+        position: relative;
+        width: 100%;
+        height: 100px;
+        border-top: solid 0.1px $frames-color;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
-        a{
-            text-decoration: none;
+        background-color: white;
+        justify-self: flex-end;
+        // align-self: flex-end;
+        .made-with {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            a {
+                text-decoration: none;
+            }
         }
     }
 }
