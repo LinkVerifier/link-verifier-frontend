@@ -189,6 +189,7 @@ const api = {
     newComment,
     getStatistics,
     getLinkById,
+    getLinkByCommentId,
     getUserById,
     getUserByCommentId,
     getDetailsLinks,

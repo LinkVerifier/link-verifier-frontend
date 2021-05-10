@@ -54,9 +54,11 @@ function UserPage(props) {
     }, [comments]);
 
     const addComment = async (comment) => {
-        if(comment===null){
-            return 
+        if (comment === null) {
+            return;
         }
+        const user = await api.getUserByCommentId(comment.id);
+        const currentUser = await authService.getCurrentUser();
         const link = await api.getLinkByCommentId(comment.id);
         return (
             <div key={comment.id} className="comment">
@@ -77,13 +79,22 @@ function UserPage(props) {
                     </div>
                 </div>
                 <div className="rightSide-comment">
-                    <IconButton
+                    {(currentUser.id === user.id || currentUser.roles.some(el => el.name="ROLE_ADMIN")) && (
+                        <IconButton
+                            aria-label="delete"
+                            size="small"
+                            onClick={() => deleteComment(comment.id)}
+                        >
+                            <DeleteIcon />
+                        </IconButton>
+                    )}
+                    {/* <IconButton
                         aria-label="delete"
                         size="small"
                         onClick={() => deleteComment(comment.id)}
                     >
                         <DeleteIcon />
-                    </IconButton>
+                    </IconButton> */}
                     {changeOpinion(comment.opinion.name)}
                 </div>
             </div>
