@@ -173,6 +173,12 @@ const deleteComment = (id) => {
       });
 }
 
+const deleteUser = (id) => {
+    return axios.delete(API_URL + `users/${id}`, {
+    });
+}
+
+
 // PATCH
 
 const patchLinkAddViews = (id) => {
@@ -201,6 +207,7 @@ const api = {
     putUsername,
     putChangePassword,
     deleteComment,
+    deleteUser,
     patchLinkAddViews
 };
   

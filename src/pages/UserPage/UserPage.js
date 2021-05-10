@@ -20,6 +20,7 @@ function UserPage(props) {
     const [user, setUser] = useState();
     const [image, setImage] = useState();
     const [isCurrentUser, setIsCurrentUser] = useState(false);
+    const [currentUser, setCurrentUser] = useState();
     const [comments, setComments] = useState([]);
     const [commentsItems, setCommentsItems] = useState([]);
     const [isEditProfileActive, setIsEditProfileActive] = useState(false);
@@ -27,7 +28,9 @@ function UserPage(props) {
 
     useEffect(() => {
         authService.getCurrentUser().then((res) => {
-            if (res.id === props.match.params.id) setIsCurrentUser(true);
+            if (res && res.id === props.match.params.id) setIsCurrentUser(true);
+            console.log(res);
+            setCurrentUser(res);
         });
         api.getUserById(props.match.params.id).then((res) => {
             setUser(res);
@@ -79,7 +82,7 @@ function UserPage(props) {
                     </div>
                 </div>
                 <div className="rightSide-comment">
-                    {(currentUser.id === user.id || currentUser.roles.some(el => el.name="ROLE_ADMIN")) && (
+                    {(currentUser && (currentUser.id === user.id || currentUser.roles.some(el => el.name="ROLE_ADMIN"))) && (
                         <IconButton
                             aria-label="delete"
                             size="small"
@@ -88,13 +91,6 @@ function UserPage(props) {
                             <DeleteIcon />
                         </IconButton>
                     )}
-                    {/* <IconButton
-                        aria-label="delete"
-                        size="small"
-                        onClick={() => deleteComment(comment.id)}
-                    >
-                        <DeleteIcon />
-                    </IconButton> */}
                     {changeOpinion(comment.opinion.name)}
                 </div>
             </div>
@@ -129,6 +125,10 @@ function UserPage(props) {
     };
     const editProfile = () => {
         setIsEditProfileActive(true);
+    };
+
+    const deleteUser = () => {
+        api.deleteUser(user.id);
     };
 
     const deleteComment = (id) => {
@@ -211,6 +211,17 @@ function UserPage(props) {
                                     </Button>
                                 </ButtonGroup>
                             )}
+                            {(currentUser && currentUser.roles.some(el => el.name="ROLE_ADMIN")) && 
+                                <ButtonGroup
+                                    disableElevation
+                                    variant="contained"
+                                    color="inherit"
+                                >
+                                    <Button onClick={deleteUser}>
+                                        Usuń użytkownika
+                                    </Button>
+                                </ButtonGroup>
+                            }
                         </div>
                     )}
                     <div className="right-container">

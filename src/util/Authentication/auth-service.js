@@ -54,6 +54,9 @@ const getCurrentUser = () => {
         })
         .then((response) => {
             return response.data;
+        })
+        .catch((err) => {
+            return null;
         });
 };
 
