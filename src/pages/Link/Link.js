@@ -62,13 +62,13 @@ function Link(props) {
                                 </ProgressBar>
                             </div>
                             <div className="row">
-                                <span>Liczba ocen:</span>
+                                <span>Liczba opini:</span>
                                 <span>
                                     {link.comments && link.comments.length}
                                 </span>
                             </div>
                             <div className="row">
-                                <span>Ostatnia ocena:</span>
+                                <span>Ostatnia opinia:</span>
                                 <span>
                                     {link.lastCommentDate
                                         ? moment(link.lastCommentDate).format(

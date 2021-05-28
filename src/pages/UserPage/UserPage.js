@@ -29,7 +29,6 @@ function UserPage(props) {
     useEffect(() => {
         authService.getCurrentUser().then((res) => {
             if (res && res.id === props.match.params.id) setIsCurrentUser(true);
-            console.log(res);
             setCurrentUser(res);
         });
         api.getUserById(props.match.params.id).then((res) => {
@@ -61,7 +60,6 @@ function UserPage(props) {
             return;
         }
         const user = await api.getUserByCommentId(comment.id);
-        const currentUser = await authService.getCurrentUser();
         const link = await api.getLinkByCommentId(comment.id);
         return (
             <div key={comment.id} className="comment">
@@ -82,15 +80,19 @@ function UserPage(props) {
                     </div>
                 </div>
                 <div className="rightSide-comment">
-                    {(currentUser && (currentUser.id === user.id || currentUser.roles.some(el => el.name="ROLE_ADMIN"))) && (
-                        <IconButton
-                            aria-label="delete"
-                            size="small"
-                            onClick={() => deleteComment(comment.id)}
-                        >
-                            <DeleteIcon />
-                        </IconButton>
-                    )}
+                    {currentUser &&
+                        (currentUser.id === user.id ||
+                            currentUser.roles.some(
+                                (el) => el.name === "ROLE_ADMIN"
+                            )) && (
+                            <IconButton
+                                aria-label="delete"
+                                size="small"
+                                onClick={() => deleteComment(comment.id)}
+                            >
+                                <DeleteIcon />
+                            </IconButton>
+                        )}
                     {changeOpinion(comment.opinion.name)}
                 </div>
             </div>
@@ -143,7 +145,6 @@ function UserPage(props) {
         setIsEditProfileActive(false);
         setIsChangePasswordActive(false);
         api.getUserById(props.match.params.id).then((res) => {
-            // console.log(res);
             setUser(res);
             setImage(
                 `data:` +
@@ -181,7 +182,8 @@ function UserPage(props) {
                                 />
                             </div>
                             <div className="user-statistics">
-                                <p>Username:</p> <p>{user && user.username}</p>
+                                <p>Nazwa Użytkownika:</p>{" "}
+                                <p>{user && user.username}</p>
                                 <p>Email:</p> <p>{user && user.email}</p>
                                 <p>Ilość komentarzy:</p>{" "}
                                 <p>
@@ -211,17 +213,20 @@ function UserPage(props) {
                                     </Button>
                                 </ButtonGroup>
                             )}
-                            {(currentUser && currentUser.roles.some(el => el.name="ROLE_ADMIN")) && 
-                                <ButtonGroup
-                                    disableElevation
-                                    variant="contained"
-                                    color="inherit"
-                                >
-                                    <Button onClick={deleteUser}>
-                                        Usuń użytkownika
-                                    </Button>
-                                </ButtonGroup>
-                            }
+                            {currentUser &&
+                                currentUser.roles.some(
+                                    (el) => el.name === "ROLE_ADMIN"
+                                ) && (
+                                    <ButtonGroup
+                                        disableElevation
+                                        variant="contained"
+                                        color="inherit"
+                                    >
+                                        <Button onClick={deleteUser}>
+                                            Usuń użytkownika
+                                        </Button>
+                                    </ButtonGroup>
+                                )}
                         </div>
                     )}
                     <div className="right-container">

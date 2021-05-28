@@ -25,8 +25,9 @@ function LastestComments(props) {
         if(comment===null){
             return 
         }
+        console.log(comment.id);
         const user = await api.getUserByCommentId(comment.id);
-        const link = await api.getLinkByCommentId(comment.id);
+        const link = await api.getLinkByCommentId(comment.id).then(console.log("elo"));
         return (
             <div key={comment.id} className="comment">
                 <Link to={'/users/'+user.id}>

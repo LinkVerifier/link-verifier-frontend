@@ -26,13 +26,14 @@ function NewComment(props) {
         }
     },[])
 
-    const handleNewComment = (values) =>{
+    const handleNewComment = (values, setFieldValue) =>{
         if(localStorage.getItem('token')===null){
             props.history.push('/login');
         }else{
-            api.newComment(props.id, values.content,Date.now(), values.opinion).then(
-                handleComments
-            ).catch(
+            api.newComment(props.id, values.content,Date.now(), values.opinion).then((res) => {
+                handleComments();
+                setFieldValue("content", " ");
+            }).catch(
                 (err)=>console.log(err.response)
             );
         }
@@ -45,7 +46,7 @@ function NewComment(props) {
             <Formik
                 initialValues={{content: "", opinion: "" }}
                 validate={validateComment}
-                onSubmit={handleNewComment}
+                onSubmit={(values, {setFieldValue}) => handleNewComment(values, setFieldValue)}
             >
                 <Form>
                     <Field as="textarea" className="" name="content" placeholder="Twoje doświadczenie z linkiem"/>
