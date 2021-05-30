@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import Footer from "../../components/general/Footer/Footer";
 import Header from "../../components/general/Header/Header";
 import authService from "../../util/Authentication/auth-service";
@@ -83,7 +84,7 @@ function UserPage(props) {
                     {currentUser &&
                         (currentUser.id === user.id ||
                             currentUser.roles.some(
-                                (el) => el.name === "ROLE_ADMIN"
+                                (el) => (el.name = "ROLE_ADMIN")
                             )) && (
                             <IconButton
                                 aria-label="delete"
@@ -130,7 +131,7 @@ function UserPage(props) {
     };
 
     const deleteUser = () => {
-        api.deleteUser(user.id);
+        api.deleteUser(user.id).then(() => props.history.push("/"));
     };
 
     const deleteComment = (id) => {
@@ -241,4 +242,4 @@ function UserPage(props) {
     );
 }
 
-export default UserPage;
+export default withRouter(UserPage);

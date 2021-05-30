@@ -175,6 +175,7 @@ const deleteComment = (id) => {
 
 const deleteUser = (id) => {
     return axios.delete(API_URL + `users/${id}`, {
+        headers: authHeader()
     });
 }
 
