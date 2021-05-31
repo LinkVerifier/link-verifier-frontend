@@ -61,6 +61,7 @@ function Comments(props) {
         if (comment !== null) {
             const user = await api.getUserByCommentId(comment.id);
             const currentUser = await authService.getCurrentUser();
+            console.log(user.id === currentUser.id);
             return (
                 <div key={comment.id} className="comment">
                     <Link to={"/users/" + user.id}>
@@ -128,8 +129,7 @@ function Comments(props) {
                         </div>
                     </div>
                     <div className="rightSide-comment">
-                        {/* {checkClaim(currentUser, user)} */}
-                        {(currentUser && (currentUser.id === user.id || currentUser.roles.some(el => el.name="ROLE_ADMIN"))) && (
+                        {(currentUser && (currentUser.id === user.id || currentUser.roles.some(el => el.name ==="ROLE_ADMIN"))) && (
                             <IconButton
                                 aria-label="delete"
                                 size="small"
